@@ -102,7 +102,7 @@ npx http-server
 
 - **GitHub Pages**
   ```bash
-  git clone https://github.com/kinoko/jp-document.git
+  git clone https://github.com/ReoShiozawa/hajimu-document.git
   cd jp-document
   # 設定後、pushで自動デプロイ
   ```
@@ -156,8 +156,8 @@ npx http-server
 
 ## コンタクト
 
-- **プロジェクト**: https://github.com/kinoko/jp
-- **ドキュメント**: https://github.com/kinoko/jp-document
+- **プロジェクト**: https://github.com/ReoShiozawa/hajimu
+- **ドキュメント**: https://github.com/ReoShiozawa/hajimu-document
 
 ---
 
