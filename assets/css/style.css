@@ -455,11 +455,12 @@ footer {
 }
 
 .importance-card {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    color: var(--text-color);
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border: 1px solid #dee2e6;
 }
 
 .importance-card h3 {
@@ -487,12 +488,13 @@ footer {
 }
 
 .critical-section {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    color: var(--text-color);
     padding: 50px;
     border-radius: 15px;
     margin: 40px 0;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border: 2px solid #dee2e6;
 }
 
 .critical-section h2 {
@@ -585,12 +587,13 @@ footer {
 }
 
 .cta {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    color: var(--text-color);
     padding: 60px 40px;
     text-align: center;
     border-radius: 15px;
     margin: 50px 0;
+    border: 2px solid #dee2e6;
 }
 
 .cta h2 {
@@ -603,8 +606,8 @@ footer {
 }
 
 .cta .btn {
-    background: white;
-    color: var(--primary-color);
+    background: var(--primary-color);
+    color: white;
 }
 
 .cta .btn:hover {
