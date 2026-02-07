@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日本語プログラミング言語 - 日本語で書こう、自由に創ろう</title>
+    <meta name="description" content="日本語で自然にプログラミングができるオープンソース言語。シンプルで強力な言語処理系。">
+    <meta name="keywords" content="日本語, プログラミング言語, インタープリタ, オープンソース">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body style="opacity: 0; transition: opacity 0.3s;">
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">日</span>
+                <span>日本語言語</span>
+            </a>
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav>
+                <a href="#" onclick="navigateTo('home'); return false;">ホーム</a>
+                <a href="#" onclick="navigateTo('guide'); return false;">始める</a>
+                <a href="#" onclick="navigateTo('reference'); return false;">リファレンス</a>
+                <a href="#" onclick="navigateTo('examples'); return false;">例</a>
+                <a href="https://github.com/kinoko/jp" target="_blank">GitHub</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div id="page-content">
+            <!-- ヒーローセクション -->
+            <section class="hero">
+                <h1>日本語で書く<br>プログラミング言語</h1>
+                <p>シンプルで直感的。日本語の自然な表現でコードを書こう。</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary" onclick="navigateTo('guide'); return false;">
+                        今すぐ始める
+                    </a>
+                    <a href="#" class="btn btn-secondary" onclick="navigateTo('reference'); return false;">
+                        ドキュメントを読む
+                    </a>
+                </div>
+            </section>
+
+            <!-- フィーチャー -->
+            <section>
+                <h2>特徴</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📝</div>
+                        <h3>日本語シンタックス</h3>
+                        <p>日本語の自然な表現で、直感的にコードが書けます。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>高速実行</h3>
+                        <p>C言語実装による高速なインタープリタで効率的に実行できます。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔧</div>
+                        <h3>豊富な機能</h3>
+                        <p>143の組み込み関数を備え、ほぼ全ての機能が実装されています。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌐</div>
+                        <h3>ネットワーク機能</h3>
+                        <p>HTTP通信、WebSocket、Webhook対応で、Web開発に最適。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚙️</div>
+                        <h3>非同期処理</h3>
+                        <p>async/await構文で、非同期処理や並列処理が簡単に書けます。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎓</div>
+                        <h3>初心者向け</h3>
+                        <p>シンプルな構文で、プログラミング初心者でも学習しやすい設計。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- クイックスタート -->
+            <section>
+                <h2>クイックスタート</h2>
+                <h3>Hello World</h3>
+                <div class="code-example">
+<pre>表示("こんにちは、世界！")</pre>
+                </div>
+
+                <h3>変数と演算</h3>
+                <div class="code-example">
+<pre>変数 x = 10
+変数 y = 20
+表示(x + y)  // → 30</pre>
+                </div>
+
+                <h3>関数定義</h3>
+                <div class="code-example">
+<pre>関数 足す(a, b):
+    戻す a + b
+終わり
+
+表示(足す(3, 5))  // → 8</pre>
+                </div>
+
+                <h3>ループと条件分岐</h3>
+                <div class="code-example">
+<pre>変数 i = 0
+繰り返す i < 5:
+    もし i % 2 == 0 なら
+        表示(i + " は偶数")
+    終わり
+    i = i + 1
+終わり</pre>
+                </div>
+
+                <h3>リスト内包表記</h3>
+                <div class="code-example">
+<pre>変数 配列 = [1, 2, 3, 4, 5]
+変数 倍 = [n * 2 を n から 配列]
+表示(倍)  // → [2, 4, 6, 8, 10]
+
+変数 偶数 = [n を n から 配列 もし n % 2 == 0]
+表示(偶数)  // → [2, 4]</pre>
+                </div>
+            </section>
+
+            <!-- システム要件 -->
+            <section>
+                <h2>システム要件</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>項目</th>
+                            <th>要件</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>OS</td>
+                            <td>macOS, Linux, Windows (WSL/MSYS2)</td>
+                        </tr>
+                        <tr>
+                            <td>コンパイラ</td>
+                            <td>GCC 9.0+, Clang 10.0+</td>
+                        </tr>
+                        <tr>
+                            <td>メモリ</td>
+                            <td>最小 256MB</td>
+                        </tr>
+                        <tr>
+                            <td>ディスク</td>
+                            <td>インストール時約 50MB</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- 統計 -->
+            <section>
+                <h2>プロジェクト統計</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📦</div>
+                        <h3>143個</h3>
+                        <p>組み込み関数</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">✅</div>
+                        <h3>156個</h3>
+                        <p>テストケース</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📄</div>
+                        <h3>100%</h3>
+                        <p>ドキュメント完成</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚠️</div>
+                        <h3>0個</h3>
+                        <p>コンパイラ警告</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- コミュニティ -->
+            <section>
+                <h2>コミュニティ</h2>
+                <p>このプロジェクトはオープンソースで、皆さんのコントリビューションを歓迎します。</p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🐙</div>
+                        <h3>GitHub</h3>
+                        <p><a href="https://github.com/kinoko/jp" target="_blank">リポジトリを見る</a></p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💬</div>
+                        <h3>ディスカッション</h3>
+                        <p>質問や提案は<a href="https://github.com/kinoko/jp/discussions" target="_blank">Discussions</a>で</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🐛</div>
+                        <h3>バグ報告</h3>
+                        <p><a href="https://github.com/kinoko/jp/issues" target="_blank">Issues</a>から報告</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>日本語言語について</h4>
+                <ul>
+                    <li><a href="#">特徴</a></li>
+                    <li><a href="#">ドキュメント</a></li>
+                    <li><a href="#">ダウンロード</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>リソース</h4>
+                <ul>
+                    <li><a href="#">チュートリアル</a></li>
+                    <li><a href="#">API リファレンス</a></li>
+                    <li><a href="#">コード例</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>コミュニティ</h4>
+                <ul>
+                    <li><a href="https://github.com/kinoko/jp" target="_blank">GitHub</a></li>
+                    <li><a href="https://github.com/kinoko/jp/discussions" target="_blank">ディスカッション</a></li>
+                    <li><a href="https://github.com/kinoko/jp/issues" target="_blank">バグ報告</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>法的</h4>
+                <ul>
+                    <li><a href="#">ライセンス</a></li>
+                    <li><a href="#">プライバシー</a></li>
+                    <li><a href="#">利用規約</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 日本語言語 プロジェクト. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- トップに戻るボタン -->
+    <button id="scrollTop">↑</button>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

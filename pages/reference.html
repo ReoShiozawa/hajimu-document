@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ドキュメント - 日本語プログラミング言語</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body style="opacity: 0; transition: opacity 0.3s;">
+    <header>
+        <div class="header-content">
+            <a href="../index.html" class="logo">
+                <span class="logo-icon">日</span>
+                <span>日本語言語</span>
+            </a>
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav>
+                <a href="../index.html">ホーム</a>
+                <a href="guide.html">始める</a>
+                <a href="reference.html" class="active">リファレンス</a>
+                <a href="examples.html">例</a>
+                <a href="https://github.com/kinoko/jp" target="_blank">GitHub</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-section">
+            <h2>リファレンスマニュアル</h2>
+            
+            <div style="display: grid; grid-template-columns: 250px 1fr; gap: 2rem; margin-top: 2rem;">
+                <div class="sidebar">
+                    <h3>目次</h3>
+                    <ul>
+                        <li><a href="#basics">基本構文</a></li>
+                        <li><a href="#types">データ型</a></li>
+                        <li><a href="#operators">演算子</a></li>
+                        <li><a href="#control">制御構造</a></li>
+                        <li><a href="#functions">関数</a></li>
+                        <li><a href="#arrays">配列</a></li>
+                        <li><a href="#strings">文字列</a></li>
+                        <li><a href="#dicts">辞書</a></li>
+                        <li><a href="#classes">クラス</a></li>
+                        <li><a href="#builtins">組み込み関数</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <!-- 基本構文 -->
+                    <section id="basics">
+                        <h3>基本構文</h3>
+                        
+                        <h4>コメント</h4>
+                        <div class="code-example">
+<pre>// 単一行コメント
+/* 複数行
+   コメント */</pre>
+                        </div>
+
+                        <h4>変数宣言</h4>
+                        <div class="code-example">
+<pre>変数 名前 = "田中"
+変数 年齢 = 25
+定数 PI = 3.14159</pre>
+                        </div>
+
+                        <h4>表示（出力）</h4>
+                        <div class="code-example">
+<pre>表示("hello")
+表示("年齢:", 25)</pre>
+                        </div>
+                    </section>
+
+                    <!-- データ型 -->
+                    <section id="types">
+                        <h3>データ型</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>型</th>
+                                    <th>説明</th>
+                                    <th>例</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>数値</td>
+                                    <td>整数・小数</td>
+                                    <td>42, 3.14, -10</td>
+                                </tr>
+                                <tr>
+                                    <td>文字列</td>
+                                    <td>テキスト</td>
+                                    <td>"hello", '世界'</td>
+                                </tr>
+                                <tr>
+                                    <td>真偽値</td>
+                                    <td>論理値</td>
+                                    <td>真, 偽</td>
+                                </tr>
+                                <tr>
+                                    <td>配列</td>
+                                    <td>順序付きコレクション</td>
+                                    <td>[1, 2, 3]</td>
+                                </tr>
+                                <tr>
+                                    <td>辞書</td>
+                                    <td>キー・バリューペア</td>
+                                    <td>{"名前": "田中"}</td>
+                                </tr>
+                                <tr>
+                                    <td>無</td>
+                                    <td>空の値</td>
+                                    <td>無</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <!-- 演算子 -->
+                    <section id="operators">
+                        <h3>演算子</h3>
+                        
+                        <h4>算術演算</h4>
+                        <table>
+                            <thead>
+                                <tr><th>演算子</th><th>説明</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>+</td><td>加算</td></tr>
+                                <tr><td>-</td><td>減算</td></tr>
+                                <tr><td>*</td><td>乗算</td></tr>
+                                <tr><td>/</td><td>除算</td></tr>
+                                <tr><td>%</td><td>剰余</td></tr>
+                                <tr><td>^</td><td>べき乗</td></tr>
+                            </tbody>
+                        </table>
+
+                        <h4>比較演算</h4>
+                        <table>
+                            <thead>
+                                <tr><th>演算子</th><th>説明</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>==</td><td>等しい</td></tr>
+                                <tr><td>!=</td><td>等しくない</td></tr>
+                                <tr><td>&lt;</td><td>より小さい</td></tr>
+                                <tr><td>&gt;</td><td>より大きい</td></tr>
+                                <tr><td>&lt;=</td><td>以下</td></tr>
+                                <tr><td>&gt;=</td><td>以上</td></tr>
+                            </tbody>
+                        </table>
+
+                        <h4>論理演算</h4>
+                        <table>
+                            <thead>
+                                <tr><th>演算子</th><th>説明</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>かつ</td><td>AND</td></tr>
+                                <tr><td>または</td><td>OR</td></tr>
+                                <tr><td>ではない</td><td>NOT</td></tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <!-- 制御構造 -->
+                    <section id="control">
+                        <h3>制御構造</h3>
+
+                        <h4>条件分岐（if）</h4>
+                        <div class="code-example">
+<pre>もし x > 10 なら
+    表示("大きい")
+それ以外 もし x > 5 なら
+    表示("中くらい")
+それ以外
+    表示("小さい")
+終わり</pre>
+                        </div>
+
+                        <h4>ループ（while）</h4>
+                        <div class="code-example">
+<pre>変数 i = 0
+繰り返す i < 5:
+    表示(i)
+    i = i + 1
+終わり</pre>
+                        </div>
+
+                        <h4>ループ（for）</h4>
+                        <div class="code-example">
+<pre>繰り返す i から 0 まで 10:
+    表示(i)
+終わり</pre>
+                        </div>
+
+                        <h4>各要素ループ（foreach）</h4>
+                        <div class="code-example">
+<pre>変数 配列 = [1, 2, 3]
+各 n を 配列 の中:
+    表示(n)
+終わり</pre>
+                        </div>
+                    </section>
+
+                    <!-- 関数 -->
+                    <section id="functions">
+                        <h3>関数</h3>
+
+                        <h4>関数定義</h4>
+                        <div class="code-example">
+<pre>関数 足す(a, b):
+    戻す a + b
+終わり
+
+表示(足す(3, 5))  // → 8</pre>
+                        </div>
+
+                        <h4>デフォルト引数</h4>
+                        <div class="code-example">
+<pre>関数 挨拶(名前, 敬語 = 偽):
+    もし 敬語 なら
+        表示("いらっしゃいませ、" + 名前 + "様")
+    それ以外
+        表示("こんにちは、" + 名前)
+    終わり
+終わり
+
+挨拶("田中")           // こんにちは、田中
+挨拶("田中", 真)      // いらっしゃいませ、田中様</pre>
+                        </div>
+
+                        <h4>可変長引数</h4>
+                        <div class="code-example">
+<pre>関数 合計(*数字):
+    変数 合 = 0
+    各 n を 数字 の中:
+        合 = 合 + n
+    終わり
+    戻す 合
+終わり
+
+表示(合計(1, 2, 3, 4, 5))  // → 15</pre>
+                        </div>
+                    </section>
+
+                    <!-- 配列 -->
+                    <section id="arrays">
+                        <h3>配列</h3>
+
+                        <h4>配列の作成と操作</h4>
+                        <div class="code-example">
+<pre>変数 配列 = [1, 2, 3, 4, 5]
+
+// アクセス
+表示(配列[0])      // → 1
+表示(配列[-1])     // → 5
+
+// 追加
+追加(配列, 6)
+
+// 削除
+削除(配列, 0)
+
+// 長さ
+表示(長さ(配列))</pre>
+                        </div>
+
+                        <h4>リスト内包表記</h4>
+                        <div class="code-example">
+<pre>// 基本形式
+変数 倍 = [n * 2 を n から [1, 2, 3]]
+表示(倍)  // → [2, 4, 6]
+
+// 条件付き
+変数 偶数 = [n を n から [1, 2, 3, 4, 5] もし n % 2 == 0]
+表示(偶数)  // → [2, 4]
+
+// 複合
+変数 処理 = [n * n を n から [1, 2, 3] もし n > 1]
+表示(処理)  // → [4, 9]</pre>
+                        </div>
+
+                        <h4>配列メソッド</h4>
+                        <table>
+                            <thead>
+                                <tr><th>メソッド</th><th>説明</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>ソート(配列)</td><td>ソート</td></tr>
+                                <tr><td>逆順(配列)</td><td>逆順</td></tr>
+                                <tr><td>スライス(配列, 開始, 終了)</td><td>部分配列</td></tr>
+                                <tr><td>位置(配列, 値)</td><td>インデックス取得</td></tr>
+                                <tr><td>存在(配列, 値)</td><td>存在確認</td></tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <!-- 文字列 -->
+                    <section id="strings">
+                        <h3>文字列</h3>
+
+                        <h4>文字列操作</h4>
+                        <div class="code-example">
+<pre>変数 文 = "こんにちは"
+
+// 長さ
+表示(長さ(文))  // → 5
+
+// 部分文字列
+表示(部分文字列(文, 0, 3))  // → こんに
+
+// 置換
+変数 新文 = 置換(文, "こん", "さよう")
+表示(新文)  // → さようにちは
+
+// 大文字・小文字
+表示(大文字("hello"))  // → HELLO
+表示(小文字("HELLO"))  // → hello</pre>
+                        </div>
+
+                        <h4>文字列メソッド</h4>
+                        <table>
+                            <thead>
+                                <tr><th>メソッド</th><th>説明</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>始まる(文字列, 接頭辞)</td><td>開始確認</td></tr>
+                                <tr><td>終わる(文字列, 接尾辞)</td><td>終了確認</td></tr>
+                                <tr><td>繰り返し(文字列, 回数)</td><td>繰り返し</td></tr>
+                                <tr><td>分割(文字列, 区切り文字)</td><td>分割</td></tr>
+                                <tr><td>結合(配列, 区切り文字)</td><td>結合</td></tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <!-- 辞書 -->
+                    <section id="dicts">
+                        <h3>辞書（ハッシュ）</h3>
+
+                        <h4>辞書の操作</h4>
+                        <div class="code-example">
+<pre>変数 辞書 = {"名前": "田中", "年齢": 25, "職業": "エンジニア"}
+
+// アクセス
+表示(辞書["名前"])  // → 田中
+
+// 設定
+辞書["年齢"] = 26
+
+// キー一覧
+表示(キー(辞書))
+
+// 値一覧
+表示(値(辞書))
+
+// サイズ
+表示(長さ(辞書))</pre>
+                        </div>
+                    </section>
+
+                    <!-- クラス -->
+                    <section id="classes">
+                        <h3>クラス</h3>
+
+                        <h4>クラス定義</h4>
+                        <div class="code-example">
+<pre>クラス 人:
+    関数 初期化(名前, 年齢):
+        自分.名前 = 名前
+        自分.年齢 = 年齢
+    終わり
+    
+    関数 紹介():
+        戻す 自分.名前 + "は" + 文字列化(自分.年齢) + "歳です"
+    終わり
+終わり
+
+変数 田中 = 新規 人("田中", 25)
+表示(田中.紹介())</pre>
+                        </div>
+                    </section>
+
+                    <!-- 組み込み関数 -->
+                    <section id="builtins">
+                        <h3>組み込み関数（主要）</h3>
+                        <table>
+                            <thead>
+                                <tr><th>関数</th><th>説明</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>表示(...)</td><td>出力</td></tr>
+                                <tr><td>入力()</td><td>入力</td></tr>
+                                <tr><td>長さ(値)</td><td>長さ取得</td></tr>
+                                <tr><td>型判定(値, 型名)</td><td>型確認</td></tr>
+                                <tr><td>文字列化(値)</td><td>文字列変換</td></tr>
+                                <tr><td>数値化(値)</td><td>数値変換</td></tr>
+                                <tr><td>絶対値(数値)</td><td>絶対値</td></tr>
+                                <tr><td>最大値(...)</td><td>最大値</td></tr>
+                                <tr><td>最小値(...)</td><td>最小値</td></tr>
+                                <tr><td>丸め(数値, 桁数)</td><td>四捨五入</td></tr>
+                            </tbody>
+                        </table>
+                        <p><a href="https://github.com/kinoko/jp/blob/main/docs/REFERENCE.md" target="_blank">完全なリストを見る →</a></p>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>ドキュメント</h4>
+                <ul>
+                    <li><a href="guide.html">始めるガイド</a></li>
+                    <li><a href="reference.html">リファレンス</a></li>
+                    <li><a href="examples.html">コード例</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>コミュニティ</h4>
+                <ul>
+                    <li><a href="https://github.com/kinoko/jp" target="_blank">GitHub</a></li>
+                    <li><a href="https://github.com/kinoko/jp/discussions" target="_blank">ディスカッション</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>リソース</h4>
+                <ul>
+                    <li><a href="#">チュートリアル</a></li>
+                    <li><a href="#">API リファレンス</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 日本語言語 プロジェクト. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <button id="scrollTop">↑</button>
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

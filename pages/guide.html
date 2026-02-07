@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>始めるガイド - 日本語プログラミング言語</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body style="opacity: 0; transition: opacity 0.3s;">
+    <header>
+        <div class="header-content">
+            <a href="../index.html" class="logo">
+                <span class="logo-icon">日</span>
+                <span>日本語言語</span>
+            </a>
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav>
+                <a href="../index.html">ホーム</a>
+                <a href="guide.html" class="active">始める</a>
+                <a href="reference.html">リファレンス</a>
+                <a href="examples.html">例</a>
+                <a href="https://github.com/kinoko/jp" target="_blank">GitHub</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-section">
+            <h2>始めるガイド</h2>
+            
+            <!-- インストール -->
+            <section>
+                <h3>1. インストール</h3>
+                
+                <h4>macOS / Linux</h4>
+                <p>GitHubからソースコードをクローンして、ビルドしてください。</p>
+                <div class="code-example">
+<pre>$ git clone https://github.com/kinoko/jp.git
+$ cd jp
+$ make
+$ make install</pre>
+                </div>
+
+                <h4>要件</h4>
+                <ul>
+                    <li>GCC 9.0+ または Clang 10.0+</li>
+                    <li>Make</li>
+                    <li>標準ライブラリ（libcurl, libpthread）</li>
+                </ul>
+
+                <h4>検証</h4>
+                <p>インストール後、以下のコマンドで動作確認してください。</p>
+                <div class="code-example">
+<pre>$ nihongo --version
+nihongo version 0.1.0</pre>
+                </div>
+            </section>
+
+            <!-- はじめてのプログラム -->
+            <section>
+                <h3>2. はじめてのプログラム</h3>
+
+                <p>テキストエディタで <code>hello.jp</code> というファイルを作成し、以下のコードを入力してください。</p>
+                <div class="code-example">
+<pre>表示("こんにちは、世界！")</pre>
+                </div>
+
+                <p>次に、コマンドラインで以下を実行します。</p>
+                <div class="code-example">
+<pre>$ nihongo hello.jp
+こんにちは、世界！</pre>
+                </div>
+
+                <p>おめでとうございます！最初のプログラムが完成しました。</p>
+            </section>
+
+            <!-- 基本概念 -->
+            <section>
+                <h3>3. 基本概念</h3>
+
+                <h4>変数</h4>
+                <p>変数は値を保存する箱のようなものです。<code>変数</code>キーワードで宣言します。</p>
+                <div class="code-example">
+<pre>変数 名前 = "太郎"
+変数 年齢 = 25
+表示(名前)
+表示(年齢)</pre>
+                </div>
+
+                <h4>データ型</h4>
+                <p>主なデータ型は以下の通りです。</p>
+                <div class="code-example">
+<pre>// 数値
+変数 整数 = 42
+変数 小数 = 3.14
+
+// 文字列
+変数 文字 = "こんにちは"
+
+// 真偽値
+変数 フラグ = 真
+
+// 配列
+変数 配列 = [1, 2, 3]
+
+// 辞書
+変数 辞書 = {"キー": "値"}</pre>
+                </div>
+
+                <h4>演算</h4>
+                <p>算術演算、比較、論理演算が使用できます。</p>
+                <div class="code-example">
+<pre>// 算術演算
+変数 a = 10
+変数 b = 3
+表示(a + b)  // → 13
+表示(a - b)  // → 7
+表示(a * b)  // → 30
+表示(a / b)  // → 3
+表示(a % b)  // → 1
+
+// 比較
+表示(a > b)   // → 真
+表示(a == 10) // → 真
+
+// 論理演算
+変数 x = 5
+表示(x > 3 かつ x < 10)  // → 真
+表示(x < 3 または x > 10) // → 偽</pre>
+                </div>
+            </section>
+
+            <!-- 制御構造 -->
+            <section>
+                <h3>4. 制御構造</h3>
+
+                <h4>条件分岐</h4>
+                <p>コードを条件に応じて分岐させることができます。</p>
+                <div class="code-example">
+<pre>変数 点数 = 85
+
+もし 点数 >= 90 なら
+    表示("優秀です")
+それ以外 もし 点数 >= 70 なら
+    表示("合格です")
+それ以外
+    表示("不合格です")
+終わり</pre>
+                </div>
+
+                <h4>ループ</h4>
+                <p>繰り返し処理ができます。</p>
+                <div class="code-example">
+<pre>// while ループ
+変数 i = 0
+繰り返す i < 5:
+    表示(i)
+    i = i + 1
+終わり
+
+// for ループ
+繰り返す j から 0 まで 5:
+    表示(j)
+終わり
+
+// 配列のループ
+変数 配列 = ["りんご", "みかん", "ぶどう"]
+各 果物 を 配列 の中:
+    表示(果物)
+終わり</pre>
+                </div>
+            </section>
+
+            <!-- 関数 -->
+            <section>
+                <h3>5. 関数</h3>
+
+                <p>コードを再利用可能な関数として定義できます。</p>
+                <div class="code-example">
+<pre>// 関数定義
+関数 挨拶(名前):
+    表示("こんにちは、" + 名前)
+終わり
+
+// 関数呼び出し
+挨拶("太郎")
+挨拶("花子")
+
+// 戻り値
+関数 足す(a, b):
+    戻す a + b
+終わり
+
+変数 結果 = 足す(3, 5)
+表示(結果)  // → 8</pre>
+                </div>
+            </section>
+
+            <!-- 配列とリスト内包表記 -->
+            <section>
+                <h3>6. 配列とリスト内包表記</h3>
+
+                <h4>配列操作</h4>
+                <div class="code-example">
+<pre>変数 配列 = [1, 2, 3]
+
+// 要素アクセス
+表示(配列[0])   // → 1
+表示(配列[-1])  // → 3
+
+// 要素追加
+追加(配列, 4)
+
+// 要素削除
+削除(配列, 0)
+
+// 配列長
+表示(長さ(配列))</pre>
+                </div>
+
+                <h4>リスト内包表記</h4>
+                <p>配列から新しい配列を簡潔に生成できます。</p>
+                <div class="code-example">
+<pre>// 基本形式
+変数 数字 = [1, 2, 3, 4, 5]
+変数 倍 = [n * 2 を n から 数字]
+表示(倍)  // → [2, 4, 6, 8, 10]
+
+// 条件付き（フィルタリング）
+変数 偶数 = [n を n から 数字 もし n % 2 == 0]
+表示(偶数)  // → [2, 4]
+
+// 複合
+変数 処理 = [n * n + 1 を n から 数字 もし n > 2]
+表示(処理)  // → [10, 17, 26]</pre>
+                </div>
+            </section>
+
+            <!-- クラス -->
+            <section>
+                <h3>7. クラスとオブジェクト</h3>
+
+                <p>オブジェクト指向プログラミングでコードを整理できます。</p>
+                <div class="code-example">
+<pre>クラス 猫:
+    関数 初期化(名前, 年齢):
+        自分.名前 = 名前
+        自分.年齢 = 年齢
+    終わり
+    
+    関数 鳴く():
+        表示(自分.名前 + ": ニャー")
+    終わり
+    
+    関数  自己紹介():
+        戻す 自分.名前 + "は" + 文字列化(自分.年齢) + "歳です"
+    終わり
+終わり
+
+// オブジェクト作成
+変数 タマ = 新規 猫("タマ", 3)
+
+// メソッド呼び出し
+タマ.鳴く()
+表示(タマ.自己紹介())</pre>
+                </div>
+            </section>
+
+            <!-- 次のステップ -->
+            <section>
+                <h3>次のステップ</h3>
+                <ul>
+                    <li><a href="reference.html">リファレンスマニュアルで詳しく学ぶ</a></li>
+                    <li><a href="examples.html">さらに多くのコード例を見る</a></li>
+                    <li><a href="https://github.com/kinoko/jp" target="_blank">GitHubでプロジェクトに貢献する</a></li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>ドキュメント</h4>
+                <ul>
+                    <li><a href="guide.html">始めるガイド</a></li>
+                    <li><a href="reference.html">リファレンス</a></li>
+                    <li><a href="examples.html">コード例</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>コミュニティ</h4>
+                <ul>
+                    <li><a href="https://github.com/kinoko/jp" target="_blank">GitHub</a></li>
+                    <li><a href="https://github.com/kinoko/jp/discussions" target="_blank">ディスカッション</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 日本語言語 プロジェクト. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <button id="scrollTop">↑</button>
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

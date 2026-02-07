@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>コード例 - 日本語プログラミング言語</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body style="opacity: 0; transition: opacity 0.3s;">
+    <header>
+        <div class="header-content">
+            <a href="../index.html" class="logo">
+                <span class="logo-icon">日</span>
+                <span>日本語言語</span>
+            </a>
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav>
+                <a href="../index.html">ホーム</a>
+                <a href="guide.html">始める</a>
+                <a href="reference.html">リファレンス</a>
+                <a href="examples.html" class="active">例</a>
+                <a href="https://github.com/kinoko/jp" target="_blank">GitHub</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-section">
+            <h2>コード例</h2>
+            
+            <!-- 基本 -->
+            <section>
+                <h3>Hello World</h3>
+                <div class="code-example">
+<pre>表示("こんにちは、世界！")</pre>
+                </div>
+            </section>
+
+            <!-- 計算 -->
+            <section>
+                <h3>計算</h3>
+                <div class="code-example">
+<pre>// 四則演算
+変数 a = 10
+変数 b = 3
+
+表示(a + b)  // → 13
+表示(a - b)  // → 7
+表示(a * b)  // → 30
+表示(a / b)  // → 3
+表示(a ^ 2)  // → 100
+
+// 三角形の面積
+変数 底辺 = 8
+変数 高さ = 5
+変数 面積 = 底辺 * 高さ / 2
+表示("面積: " + 文字列化(面積))</pre>
+                </div>
+            </section>
+
+            <!-- FizzBuzz -->
+            <section>
+                <h3>FizzBuzz</h3>
+                <div class="code-example">
+<pre>繰り返す i から 1 まで 100:
+    もし i % 15 == 0 なら
+        表示("FizzBuzz")
+    それ以外 もし i % 3 == 0 なら
+        表示("Fizz")
+    それ以外 もし i % 5 == 0 なら
+        表示("Buzz")
+    それ以外
+        表示(i)
+    終わり
+終わり</pre>
+                </div>
+            </section>
+
+            <!-- 配列操作 -->
+            <section>
+                <h3>配列操作</h3>
+                <div class="code-example">
+<pre>// 配列の作成
+変数 配列 = [1, 2, 3, 4, 5]
+
+// 配列の変換（リスト内包表記）
+変数 二乗 = [n * n を n から 配列]
+表示(二乗)  // → [1, 4, 9, 16, 25]
+
+// フィルタリング
+変数 偶数 = [n を n から 配列 もし n % 2 == 0]
+表示(偶数)  // → [2, 4]
+
+// ソート
+変数 ソート済み = ソート([5, 2, 8, 1, 9])
+表示(ソート済み)  // → [1, 2, 5, 8, 9]
+
+// 逆順
+変数 逆 = 逆順([1, 2, 3, 4, 5])
+表示(逆)  // → [5, 4, 3, 2, 1]
+
+// 合計
+変数 合計 = 0
+各 n を 配列 の中:
+    合計 = 合計 + n
+終わり
+表示(合計)  // → 15</pre>
+                </div>
+            </section>
+
+            <!-- 関数 -->
+            <section>
+                <h3>関数の定義と利用</h3>
+                <div class="code-example">
+<pre>// フィボナッチ数列
+関数 フィボナッチ(n):
+    もし n <= 1 なら
+        戻す n
+    終わり
+    戻す フィボナッチ(n - 1) + フィボナッチ(n - 2)
+終わり
+
+表示(フィボナッチ(10))  // → 55
+
+// 階乗
+関数 階乗(n):
+    もし n <= 1 なら
+        戻す 1
+    終わり
+    戻す n * 階乗(n - 1)
+終わり
+
+表示(階乗(5))  // → 120
+
+// 素数判定
+関数 素数判定(n):
+    もし n < 2 なら
+        戻す 偽
+    終わり
+    繰り返す i から 2 まで 整数根(n) + 1:
+        もし n % i == 0 なら
+            戻す 偽
+        終わり
+    終わり
+    戻す 真
+終わり
+
+表示(素数判定(17))  // → 真</pre>
+                </div>
+            </section>
+
+            <!-- クラス -->
+            <section>
+                <h3>クラスとオブジェクト</h3>
+                <div class="code-example">
+<pre>クラス 銀行口座:
+    関数 初期化(名義, 初期残高):
+        自分.名義 = 名義
+        自分.残高 = 初期残高
+    終わり
+    
+    関数 入金(額):
+        自分.残高 = 自分.残高 + 額
+        表示(自分.名義 + "に" + 文字列化(額) + "円入金されました")
+    終わり
+    
+    関数 出金(額):
+        もし 自分.残高 >= 額 なら
+            自分.残高 = 自分.残高 - 額
+            表示(自分.名義 + "から" + 文字列化(額) + "円出金されました")
+        それ以外
+            表示("残高不足です")
+        終わり
+    終わり
+    
+    関数 残高表示():
+        表示(自分.名義 + "の残高: " + 文字列化(自分.残高) + "円")
+    終わり
+終わり
+
+// 使用例
+変数 太郎口座 = 新規 銀行口座("太郎", 100000)
+太郎口座.残高表示()  // 太郎の残高: 100000円
+太郎口座.入金(50000)  // 太郎に50000円入金されました
+太郎口座.出金(30000)  // 太郎から30000円出金されました
+太郎口座.残高表示()  // 太郎の残高: 120000円</pre>
+                </div>
+            </section>
+
+            <!-- 辞書 -->
+            <section>
+                <h3>辞書操作</h3>
+                <div class="code-example">
+<pre>// ユーザー情報
+変数 ユーザー = {
+    "名前": "田中太郎",
+    "年齢": 30,
+    "職業": "エンジニア",
+    "地域": "東京"
+}
+
+// アクセス
+表示(ユーザー["名前"])   // → 田中太郎
+表示(ユーザー["年齢"])   // → 30
+
+// キーと値の列挙
+各 キー を キー(ユーザー) の中:
+    表示(キー + ": " + 文字列化(ユーザー[キー]))
+終わり
+
+// 複数ユーザー
+変数 ユーザーリスト = [
+    {"名前": "田中", "年齢": 30},
+    {"名前": "佐藤", "年齢": 25},
+    {"名前": "鈴木", "年齢": 35}
+]
+
+各 u を ユーザーリスト の中:
+    表示(u["名前"] + ": " + 文字列化(u["年齢"]) + "歳")
+終わり</pre>
+                </div>
+            </section>
+
+            <!-- 文字列操作 -->
+            <section>
+                <h3>文字列操作</h3>
+                <div class="code-example">
+<pre>// 基本操作
+変数 文字列 = "プログラミング"
+
+表示(長さ(文字列))  // → 7
+表示(部分文字列(文字列, 0, 4))  // → プログラ
+表示(大文字("hello"))  // → HELLO
+表示(小文字("HELLO"))  // → hello
+
+// 分割と結合
+変数 文 = "りんご,みかん,ぶどう"
+変数 果物 = 分割(文, ",")
+表示(果物)  // → ["りんご", "みかん", "ぶどう"]
+
+変数 結合済み = 結合(["a", "b", "c"], "-")
+表示(結合済み)  // → a-b-c
+
+// 置換
+変数 元の文字列 = "こんにちは、世界"
+変数 新しい文字列 = 置換(元の文字列, "世界", "宇宙")
+表示(新しい文字列)  // → こんにちは、宇宙
+
+// 検索
+表示(始まる("Hello World", "Hello"))  // → 真
+表示(終わる("Hello World", "World"))  // → 真</pre>
+                </div>
+            </section>
+
+            <!-- 入出力 -->
+            <section>
+                <h3>ユーザー入力</h3>
+                <div class="code-example">
+<pre>表示("あなたの名前は？")
+変数 名前 = 入力()
+表示("あなたの年齢は？")
+変数 年齢 = 入力()
+
+表示(名前 + "さんは" + 年齢 + "歳ですね")
+
+// 数値に変換
+表示("2つの数字を入力してください")
+表示("1番目: ")
+変数 a = 数値化(入力())
+表示("2番目: ")
+変数 b = 数値化(入力())
+表示("合計: " + 文字列化(a + b))</pre>
+                </div>
+            </section>
+
+            <!-- 高階関数 -->
+            <section>
+                <h3>高階関数とラムダ式</h3>
+                <div class="code-example">
+<pre>// 配列の変換
+変数 配列 = [1, 2, 3, 4, 5]
+変数 二乗 = 変換(配列, 関数(n): 戻す n * n 終わり)
+表示(二乗)  // → [1, 4, 9, 16, 25]
+
+// フィルタリング
+変数 偶数 = 抽出(配列, 関数(n): 戻す n % 2 == 0 終わり)
+表示(偶数)  // → [2, 4]
+
+// 合計計算
+変数 合計 = 折り畳み(配列, 0, 関数(acc, n): 戻す acc + n 終わり)
+表示(合計)  // → 15
+
+// 条件チェック
+表示(全て(配列, 関数(n): 戻す n > 0 終わり))  // → 真
+表示(一つでも(配列, 関数(n): 戻す n > 10 終わり))  // → 偽</pre>
+                </div>
+            </section>
+
+            <!-- その他 -->
+            <section>
+                <h3>その他の便利な例</h3>
+                
+                <h4>パスワード検証</h4>
+                <div class="code-example">
+<pre>関数 パスワード検証(パスワード):
+    変数 長さ_OK = 長さ(パスワード) >= 8
+    変数 大文字_OK = 偽
+    変数 数字_OK = 偽
+    
+    各 c を パスワード の中:
+        もし 文字コード(c) >= 65 かつ 文字コード(c) <= 90 なら
+            大文字_OK = 真
+        終わり
+    終わり
+    
+    各 c を パスワード の中:
+        もし 文字コード(c) >= 48 かつ 文字コード(c) <= 57 なら
+            数字_OK = 真
+        終わり
+    終わり
+    
+    戻す 長さ_OK かつ 大文字_OK かつ 数字_OK
+終わり
+
+もし パスワード検証("Abc12345") なら
+    表示("強力なパスワードです")
+それ以外
+    表示("弱いパスワードです")
+終わり</pre>
+                </div>
+
+                <h4>温度変換</h4>
+                <div class="code-example">
+<pre>関数 摂氏から華氏(摂氏):
+    戻す 摂氏 * 9 / 5 + 32
+終わり
+
+関数 華氏から摂氏(華氏):
+    戻す (華氏 - 32) * 5 / 9
+終わり
+
+表示(摂氏から華氏(0))    // → 32
+表示(摂氏から華氏(100))  // → 212
+表示(華氏から摂氏(32))   // → 0</pre>
+                </div>
+            </section>
+
+            <!-- さらに学ぶ -->
+            <section style="background-color: var(--light-bg); padding: 2rem; border-radius: 5px; margin-top: 2rem;">
+                <h3>さらに学ぶ</h3>
+                <ul>
+                    <li><a href="reference.html">完全なリファレンスマニュアル</a></li>
+                    <li><a href="guide.html">始めるガイド</a></li>
+                    <li><a href="https://github.com/kinoko/jp/tree/main/examples" target="_blank">GitHubのサンプルコード</a></li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>ドキュメント</h4>
+                <ul>
+                    <li><a href="guide.html">始めるガイド</a></li>
+                    <li><a href="reference.html">リファレンス</a></li>
+                    <li><a href="examples.html">コード例</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>コミュニティ</h4>
+                <ul>
+                    <li><a href="https://github.com/kinoko/jp" target="_blank">GitHub</a></li>
+                    <li><a href="https://github.com/kinoko/jp/discussions" target="_blank">ディスカッション</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 日本語言語 プロジェクト. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <button id="scrollTop">↑</button>
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>
