@@ -24,6 +24,12 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: #fff;
+    opacity: 1;
+    transition: opacity 0.3s ease-in;
+}
+
+body.page-loading {
+    opacity: 0;
 }
 
 /* ヘッダー */

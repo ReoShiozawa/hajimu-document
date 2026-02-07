@@ -37,8 +37,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ページ読み込み完了時
-    document.body.style.opacity = '1';
+    // ページ読み込み完了時 - フェードイン効果
+    document.body.classList.remove('page-loading');
 });
 
 // ページ遷移関数

@@ -7,8 +7,11 @@
     <meta name="description" content="日本語で自然にプログラミングができるオープンソース言語。シンプルで強力な言語処理系。">
     <meta name="keywords" content="日本語, プログラミング言語, インタープリタ, オープンソース">
     <link rel="stylesheet" href="assets/css/style.css">
+    <noscript>
+        <style>body { opacity: 1 !important; }</style>
+    </noscript>
 </head>
-<body style="opacity: 0; transition: opacity 0.3s;">
+<body class="page-loading">
     <header>
         <div class="header-content">
             <a href="index.html" class="logo">
@@ -21,10 +24,10 @@
                 <span></span>
             </button>
             <nav>
-                <a href="#" onclick="navigateTo('home'); return false;">ホーム</a>
-                <a href="#" onclick="navigateTo('guide'); return false;">始める</a>
-                <a href="#" onclick="navigateTo('reference'); return false;">リファレンス</a>
-                <a href="#" onclick="navigateTo('examples'); return false;">例</a>
+                <a href="index.html">ホーム</a>
+                <a href="pages/guide.html">始める</a>
+                <a href="pages/reference.html">リファレンス</a>
+                <a href="pages/examples.html">例</a>
                 <a href="https://github.com/kinoko/jp" target="_blank">GitHub</a>
             </nav>
         </div>
@@ -37,10 +40,10 @@
                 <h1>日本語で書く<br>プログラミング言語</h1>
                 <p>シンプルで直感的。日本語の自然な表現でコードを書こう。</p>
                 <div class="cta-buttons">
-                    <a href="#" class="btn btn-primary" onclick="navigateTo('guide'); return false;">
+                    <a href="pages/guide.html" class="btn btn-primary">
                         今すぐ始める
                     </a>
-                    <a href="#" class="btn btn-secondary" onclick="navigateTo('reference'); return false;">
+                    <a href="pages/reference.html" class="btn btn-secondary">
                         ドキュメントを読む
                     </a>
                 </div>
@@ -217,17 +220,17 @@
             <div class="footer-section">
                 <h4>日本語言語について</h4>
                 <ul>
-                    <li><a href="#">特徴</a></li>
-                    <li><a href="#">ドキュメント</a></li>
-                    <li><a href="#">ダウンロード</a></li>
+                    <li><a href="index.html#features">特徴</a></li>
+                    <li><a href="pages/reference.html">ドキュメント</a></li>
+                    <li><a href="pages/guide.html">ダウンロード</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h4>リソース</h4>
                 <ul>
-                    <li><a href="#">チュートリアル</a></li>
-                    <li><a href="#">API リファレンス</a></li>
-                    <li><a href="#">コード例</a></li>
+                    <li><a href="pages/guide.html">チュートリアル</a></li>
+                    <li><a href="pages/reference.html">API リファレンス</a></li>
+                    <li><a href="pages/examples.html">コード例</a></li>
                 </ul>
             </div>
             <div class="footer-section">
