@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>よくある質問 - 日本語プログラミング言語</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="../index.html" class="logo">
+                <span class="logo-icon">日</span>
+                <span>日本語言語</span>
+            </a>
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav>
+                <a href="../index.html">ホーム</a>
+                <a href="guide.html">始める</a>
+                <a href="reference.html">リファレンス</a>
+                <a href="examples.html">例</a>
+                <a href="faq.html" class="active">FAQ</a>
+                <a href="https://github.com/kinoko/jp" target="_blank">GitHub</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>よくある質問 (FAQ)</h1>
+        
+        <section>
+            <h2>基本的な質問</h2>
+            
+            <div class="faq-item">
+                <h3>Q: なぜ日本語プログラミング言語を作ったのですか？</h3>
+                <p><strong>A:</strong> プログラミング教育の障壁を下げ、日本語話者がより直感的にプログラミングを学べるようにするためです。英語の予約語やシンタックスに慣れる前に、プログラミングの本質的な概念（変数、関数、ループなど）を理解できます。</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q: この言語の特徴は何ですか？</h3>
+                <p><strong>A:</strong></p>
+                <ul>
+                    <li>完全日本語の予約語とキーワード</li>
+                    <li>シンプルで直感的な構文</li>
+                    <li>143個の豊富な組み込み関数</li>
+                    <li>オブジェクト指向プログラミング対応</li>
+                    <li>リスト内包表記、ラムダ式などのモダンな機能</li>
+                    <li>非同期処理（async/await）対応</li>
+                    <li>HTTP通信ライブラリ内蔵</li>
+                    <li>C言語で実装された高速なインタープリタ</li>
+                </ul>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q: 実用的なプログラムを書けますか？</h3>
+                <p><strong>A:</strong> はい。Webスクレイピング、ファイル処理、データ分析、API開発など、実用的なプログラムが書けます。標準ライブラリには文字列処理、配列操作、辞書操作、ファイルI/O、HTTP通信などの機能が含まれています。</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>インストールと環境</h2>
+            
+            <div class="faq-item">
+                <h3>Q: どのOSで動作しますか？</h3>
+                <p><strong>A:</strong> macOS、Linux、Windows（WSL/MSYS2経由）で動作します。C言語で実装されているため、GCCやClangがあればほとんどのUnix系環境で動作します。</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q: インストール方法は？</h3>
+                <p><strong>A:</strong></p>
+                <div class="code-example">
+<pre># GitHubからクローン
+git clone https://github.com/kinoko/jp.git
+cd jp
+
+# ビルド
+make
+
+# インストール（オプション）
+sudo make install
+
+# 実行
+./nihongo examples/hello.jp</pre>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q: 必要なシステム要件は？</h3>
+                <p><strong>A:</strong></p>
+                <ul>
+                    <li><strong>コンパイラ:</strong> GCC 9.0以上またはClang 10.0以上</li>
+                    <li><strong>メモリ:</strong> 最低256MB（推奨512MB以上）</li>
+                    <li><strong>ディスク:</strong> インストール時約50MB</li>
+                    <li><strong>OS:</strong> macOS 10.13+, Ubuntu 18.04+, または互換システム</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>言語仕様</h2>
+            
+            <div class="faq-item">
+                <h3>Q: 変数の型は静的ですか、動的ですか？</h3>
+                <p><strong>A:</strong> 動的型付けです。変数の型は実行時に決定され、同じ変数に異なる型の値を代入できます。型推論により、明示的な型宣言は不要です。</p>
+                <div class="code-example">
+<pre>変数 x = 10      // 整数
+x = "文字列"     // 文字列に変更可能
+x = [1, 2, 3]   // 配列に変更可能</pre>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q: 関数は第一級オブジェクトですか？</h3>
+                <p><strong>A:</strong> はい。関数を変数に代入したり、引数として渡したり、戻り値として返したりできます。</p>
+                <div class="code-example">
+<pre>関数 適用(関数, 値):
+    戻す 関数(値)
+終わり
+
+変数 二倍 = ラムダ(x): 戻す x * 2 終わり
+表示(適用(二倍, 5))  // → 10</pre>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q: オブジェクト指向プログラミングはできますか？</h3>
+                <p><strong>A:</strong> はい。クラス、継承、メソッド、コンストラクタなどが使えます。</p>
+                <div class="code-example">
+<pre>クラス 動物:
+    初期化(名前):
+        自分.名前 = 名前
+    終わり
+    
+    挨拶():
+        表示("こんにちは、" + 自分.名前 + "です")
+    終わり
+終わり
+
+変数 犬 = 新しい 動物("ポチ")
+犬.挨拶()  // → こんにちは、ポチです</pre>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q: 非同期処理はできますか？</h3>
+                <p><strong>A:</strong> はい。<code>非同期</code>キーワードと<code>待つ</code>キーワードで非同期処理が書けます。</p>
+                <div class="code-example">
+<pre>非同期 関数 データ取得(URL):
+    変数 応答 = 待つ HTTP取得(URL)
+    戻す 応答.本文
+終わり</pre>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q: エラーハンドリングはどうなっていますか？</h3>
+                <p><strong>A:</strong> try-catch-finally構文（試す-捕捉-最後に）を使います。</p>
+                <div class="code-example">
+<pre>試す
+    変数 結果 = 10 / 0
+捕捉 エラー:
+    表示("エラー: " + エラー)
+最後に
+    表示("処理完了")
+終わり</pre>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>開発とデバッグ</h2>
+            
+            <div class="faq-item">
+                <h3>Q: IDEやエディタのサポートはありますか？</h3>
+                <p><strong>A:</strong> 現在、専用のIDEプラグインは開発中ですが、シンタックスハイライトは任意のテキストエディタで設定できます。VS Code、Vim、Emacsなどで<code>.jp</code>ファイルの認識設定が可能です。</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q: デバッグ方法は？</h3>
+                <p><strong>A:</strong> 以下の方法があります：</p>
+                <ul>
+                    <li><code>表示()</code>関数でデバッグ出力</li>
+                    <li><code>型()</code>関数で変数の型を確認</li>
+                    <li>エラーメッセージの行番号で問題箇所を特定</li>
+                    <li><code>試す-捕捉</code>ブロックで例外をキャッチ</li>
+                </ul>
+                <div class="code-example">
+<pre>変数 値 = "テスト"
+表示("値 =", 値)
+表示("型 =", 型(値))  // → 型 = 文字列</pre>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q: パフォーマンスはどのくらいですか？</h3>
+                <p><strong>A:</strong> C言語で実装されたインタープリタで、Pythonと同等かそれ以上の速度です。大規模データ処理やパフォーマンスクリティカルな処理にも対応できます。</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q: テストフレームワークはありますか？</h3>
+                <p><strong>A:</strong> 現在は組み込みのテストフレームワークはありませんが、アサーション関数を自作してテストを書けます。将来的にはテストフレームワークの追加を予定しています。</p>
+                <div class="code-example">
+<pre>関数 アサート(条件, メッセージ):
+    もし 条件 でなければ
+        表示("テスト失敗:", メッセージ)
+        戻す 偽
+    終わり
+    戻す 真
+終わり
+
+アサート(足す(2, 3) == 5, "足し算のテスト")</pre>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>ライブラリとエコシステム</h2>
+            
+            <div class="faq-item">
+                <h3>Q: 標準ライブラリには何が含まれていますか？</h3>
+                <p><strong>A:</strong> 143個の組み込み関数があり、以下のカテゴリをカバーしています：</p>
+                <ul>
+                    <li><strong>基本I/O:</strong> 表示(), 入力(), 読む(), 書く()</li>
+                    <li><strong>文字列:</strong> 長さ(), 分割(), 結合(), 置換(), 検索()</li>
+                    <li><strong>配列:</strong> 追加(), 削除(), 並べ替え(), 逆順(), マップ(), フィルタ()</li>
+                    <li><strong>辞書:</strong> キー一覧(), 値一覧(), 存在確認()</li>
+                    <li><strong>数学:</strong> 合計(), 平均(), 最大(), 最小(), 絶対値(), 累乗()</li>
+                    <li><strong>ファイル:</strong> ファイル読込(), ファイル書込(), ファイル存在()</li>
+                    <li><strong>HTTP:</strong> HTTP取得(), HTTP投稿(), JSON解析()</li>
+                    <li><strong>型変換:</strong> 整数化(), 小数化(), 文字列化()</li>
+                    <li><strong>その他:</strong> 範囲(), 列挙(), 圧縮(), スリープ()</li>
+                </ul>
+                <p>完全なリストは<a href="reference.html">リファレンス</a>ページをご覧ください。</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q: 外部ライブラリやパッケージマネージャはありますか？</h3>
+                <p><strong>A:</strong> 現在はモジュールシステムがあり、<code>取り込む</code>キーワードで他のファイルを読み込めます。パッケージマネージャは将来的な拡張として検討中です。</p>
+                <div class="code-example">
+<pre>// lib/math_utils.jp を読み込む
+取り込む "lib/math_utils.jp"
+
+// math_utils.jp 内の関数を使用
+変数 結果 = 計算(10, 20)</pre>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q: C言語やPythonのライブラリと連携できますか？</h3>
+                <p><strong>A:</strong> 現在はネイティブな連携機能はありませんが、HTTPエンドポイント経由での連携や、ファイルI/Oを通じた連携が可能です。将来的にはFFI（Foreign Function Interface）の追加を検討しています。</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>コミュニティと開発</h2>
+            
+            <div class="faq-item">
+                <h3>Q: どうやって貢献できますか？</h3>
+                <p><strong>A:</strong> 以下の方法で貢献できます：</p>
+                <ul>
+                    <li><strong>コード:</strong> GitHubでプルリクエストを送る</li>
+                    <li><strong>バグ報告:</strong> GitHubのIssuesで報告</li>
+                    <li><strong>ドキュメント:</strong> ドキュメントの改善提案</li>
+                    <li><strong>例:</strong> サンプルコードや実用例の追加</li>
+                    <li><strong>普及:</strong> SNSやブログで紹介</li>
+                </ul>
+                <p>GitHubリポジトリ: <a href="https://github.com/kinoko/jp" target="_blank">https://github.com/kinoko/jp</a></p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q: ライセンスは何ですか？</h3>
+                <p><strong>A:</strong> MITライセンスです。商用・非商用問わず自由に使用、改変、配布できます。</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q: ロードマップはどこで見られますか？</h3>
+                <p><strong>A:</strong> GitHubリポジトリの<a href="https://github.com/kinoko/jp/blob/main/docs/ROADMAP.md" target="_blank">ROADMAP.md</a>で開発計画を公開しています。現在、44個の計画項目が完了し、さらなる機能追加を検討中です。</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q: サポートやヘルプはどこで受けられますか？</h3>
+                <p><strong>A:</strong></p>
+                <ul>
+                    <li><strong>ドキュメント:</strong> このサイトの<a href="guide.html">ガイド</a>と<a href="reference.html">リファレンス</a></li>
+                    <li><strong>GitHub Issues:</strong> 技術的な質問やバグ報告</li>
+                    <li><strong>サンプルコード:</strong> <a href="examples.html">例</a>ページとGitHubのexamplesディレクトリ</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>今後の展望</h2>
+            
+            <div class="faq-item">
+                <h3>Q: 今後追加予定の機能は？</h3>
+                <p><strong>A:</strong> 以下を検討しています：</p>
+                <ul>
+                    <li>パッケージマネージャ（標準ライブラリの拡張）</li>
+                    <li>IDEプラグイン（VS Code、IntelliJ）</li>
+                    <li>デバッガとプロファイラ</li>
+                    <li>テストフレームワーク</li>
+                    <li>並列処理のサポート強化</li>
+                    <li>ネイティブバイナリコンパイラ（JIT/AOT）</li>
+                    <li>Webフレームワーク</li>
+                    <li>データベースライブラリ</li>
+                    <li>GUIライブラリ</li>
+                </ul>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q: この言語は実験的なものですか、それとも長期的にサポートされますか？</h3>
+                <p><strong>A:</strong> 真剣な長期プロジェクトです。現在156個のテストケースがあり、すべてパスしています。実用的なプログラムを書くための機能は既に揃っており、継続的に改善・拡張していきます。</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q: 他の日本語プログラミング言語との違いは？</h3>
+                <p><strong>A:</strong> 以下の点で特徴的です：</p>
+                <ul>
+                    <li>C言語による高速実装</li>
+                    <li>モダンな言語機能（ラムダ、リスト内包表記、async/await）</li>
+                    <li>143個の豊富な組み込み関数</li>
+                    <li>実用的なHTTP通信ライブラリ</li>
+                    <li>オープンソースで活発に開発中</li>
+                    <li>教育だけでなく実用目的でも使える設計</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>トラブルシューティング</h2>
+            
+            <div class="faq-item">
+                <h3>Q: ビルドエラーが出ます</h3>
+                <p><strong>A:</strong> 以下を確認してください：</p>
+                <ul>
+                    <li>GCC/Clangのバージョン（GCC 9.0+, Clang 10.0+が必要）</li>
+                    <li><code>make clean && make</code>でクリーンビルド</li>
+                    <li>必要なヘッダファイルがインストールされているか</li>
+                </ul>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q: 実行時にエラーが出ます</h3>
+                <p><strong>A:</strong> エラーメッセージの行番号を確認し、以下をチェック：</p>
+                <ul>
+                    <li>変数が初期化されているか</li>
+                    <li>関数名や変数名のスペルミスがないか</li>
+                    <li>括弧やブロックの<code>終わり</code>が正しく閉じられているか</li>
+                    <li>型が正しいか（例：文字列を数値で割ろうとしていないか）</li>
+                </ul>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q: 日本語入力がうまくいきません</h3>
+                <p><strong>A:</strong> ファイルがUTF-8エンコーディングで保存されているか確認してください。ほとんどのモダンなエディタではデフォルトでUTF-8ですが、古いエディタでは明示的に設定が必要な場合があります。</p>
+            </div>
+        </section>
+
+        <section class="cta">
+            <h2>まだ質問がありますか？</h2>
+            <p>GitHubのIssuesで質問したり、ドキュメントを詳しく読んだりできます。</p>
+            <div class="cta-buttons">
+                <a href="https://github.com/kinoko/jp/issues" class="btn btn-primary" target="_blank">GitHubで質問</a>
+                <a href="guide.html" class="btn btn-secondary">ガイドを読む</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>日本語言語について</h4>
+                <ul>
+                    <li><a href="../index.html#features">特徴</a></li>
+                    <li><a href="reference.html">ドキュメント</a></li>
+                    <li><a href="guide.html">ダウンロード</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>リソース</h4>
+                <ul>
+                    <li><a href="guide.html">チュートリアル</a></li>
+                    <li><a href="reference.html">API リファレンス</a></li>
+                    <li><a href="examples.html">コード例</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>コミュニティ</h4>
+                <ul>
+                    <li><a href="https://github.com/kinoko/jp" target="_blank">GitHub</a></li>
+                    <li><a href="https://github.com/kinoko/jp/issues" target="_blank">Issue Tracker</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>法的情報</h4>
+                <ul>
+                    <li><a href="https://github.com/kinoko/jp/blob/main/LICENSE" target="_blank">MIT ライセンス</a></li>
+                    <li><a href="#">プライバシーポリシー</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 日本語プログラミング言語プロジェクト</p>
+        </div>
+    </footer>
+
+    <button id="scroll-top" title="トップに戻る">↑</button>
+    
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>
