@@ -26,6 +26,7 @@
                 <a href="guide.html">始める</a>
                 <a href="reference.html" class="active">リファレンス</a>
                 <a href="examples.html">例</a>
+                <a href="plugins.html">プラグイン開発</a>
                 <a href="faq.html">FAQ</a>
                 <a href="contributing.html">貢献</a>
                 <a href="https://github.com/ReoShiozawa/hajimu" target="_blank">GitHub</a>
@@ -51,6 +52,8 @@
                         <li><a href="#dicts">辞書</a></li>
                         <li><a href="#classes">クラス</a></li>
                         <li><a href="#builtins">組み込み関数</a></li>
+                        <li><a href="#plugins">C拡張プラグイン</a></li>
+                        <li><a href="#packages">パッケージ管理</a></li>
                     </ul>
                 </div>
 
@@ -412,6 +415,90 @@
                             </tbody>
                         </table>
                         <p><a href="https://github.com/ReoShiozawa/hajimu/blob/main/docs/REFERENCE.md" target="_blank">完全なリストを見る →</a></p>
+                    </section>
+
+                    <!-- C拡張プラグイン -->
+                    <section id="plugins">
+                        <h3>C拡張プラグイン（.hjp）</h3>
+                        <p>C言語等で書かれたネイティブプラグインを統一拡張子 <code>.hjp</code>（Hajimu Plugin）で読み込めます。Windows/macOS/Linux 共通で使用可能です。</p>
+
+                        <h4>プラグインの使用</h4>
+                        <div class="code-example">
+<pre>// 拡張子なしでインポート（自動検索）
+取り込む "math_plugin" として 数学P
+表示(数学P["二乗"](5))       // → 25
+表示(数学P["階乗"](6))       // → 720
+
+// 拡張子を明示的に指定してもOK
+取り込む "math_plugin.hjp" として 数学P</pre>
+                        </div>
+
+                        <h4>検索順序</h4>
+                        <table>
+                            <thead>
+                                <tr><th>優先度</th><th>検索場所</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>1</td><td>呼び出し元ファイルからの相対パス</td></tr>
+                                <tr><td>2</td><td>カレントディレクトリ</td></tr>
+                                <tr><td>3</td><td>hajimu_packages/ 内</td></tr>
+                                <tr><td>4</td><td>~/.hajimu/plugins/（グローバル）</td></tr>
+                            </tbody>
+                        </table>
+
+                        <h4>メタ情報アクセス</h4>
+                        <div class="code-example">
+<pre>取り込む "my_plugin" として P
+表示(P["__名前__"])        // プラグイン名
+表示(P["__バージョン__"])  // バージョン
+表示(P["__作者__"])        // 作者
+表示(P["__説明__"])        // 説明</pre>
+                        </div>
+
+                        <p><a href="plugins.html">プラグイン開発ガイドを見る →</a></p>
+                    </section>
+
+                    <!-- パッケージ管理 -->
+                    <section id="packages">
+                        <h3>パッケージ管理</h3>
+                        <p>内蔵パッケージマネージャで外部パッケージを管理できます。</p>
+
+                        <h4>コマンド一覧</h4>
+                        <table>
+                            <thead>
+                                <tr><th>コマンド</th><th>説明</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><code>hajimu パッケージ 初期化</code></td><td>プロジェクトを初期化（hajimu.json作成）</td></tr>
+                                <tr><td><code>hajimu パッケージ 追加 &lt;URL&gt;</code></td><td>パッケージをインストール</td></tr>
+                                <tr><td><code>hajimu パッケージ 削除 &lt;名前&gt;</code></td><td>パッケージを削除</td></tr>
+                                <tr><td><code>hajimu パッケージ 一覧</code></td><td>インストール済み一覧</td></tr>
+                                <tr><td><code>hajimu パッケージ インストール</code></td><td>全依存をインストール</td></tr>
+                            </tbody>
+                        </table>
+
+                        <h4>パッケージの使用</h4>
+                        <div class="code-example">
+<pre>// パッケージをインポート
+取り込む "パッケージ名" として PKG
+
+// パッケージ内の関数を使用
+PKG.関数名()</pre>
+                        </div>
+
+                        <h4>hajimu.json</h4>
+                        <div class="code-example">
+<pre>{
+  "名前": "プロジェクト名",
+  "バージョン": "1.0.0",
+  "説明": "説明文",
+  "作者": "作者名",
+  "メイン": "main.jp",
+  "依存": {
+    "パッケージ名": "ユーザー名/リポジトリ名"
+  }
+}</pre>
+                        </div>
                     </section>
                 </div>
             </div>

@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プラグイン開発ガイド - はじむ</title>
+    <meta name="description" content="はじむ言語のC拡張プラグイン(.hjp)と外部パッケージの作り方ガイド。C/C++/Rust等でクロスプラットフォーム対応のプラグインを開発する方法を解説。">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <noscript>
+        <style>body { opacity: 1 !important; }</style>
+    </noscript>
+</head>
+<body class="page-loading">
+    <header>
+        <div class="header-content">
+            <a href="../index.html" class="logo">
+                <span class="logo-icon">始</span>
+                <span>はじむ</span>
+            </a>
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav>
+                <a href="../index.html">ホーム</a>
+                <a href="guide.html">始める</a>
+                <a href="reference.html">リファレンス</a>
+                <a href="examples.html">例</a>
+                <a href="plugins.html" class="active">プラグイン開発</a>
+                <a href="faq.html">FAQ</a>
+                <a href="contributing.html">貢献</a>
+                <a href="https://github.com/ReoShiozawa/hajimu" target="_blank">GitHub</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-section">
+            <h2>プラグイン開発ガイド</h2>
+            <p>はじむでは、C言語（または共有ライブラリを生成できる任意の言語）でネイティブプラグインを開発できます。<br>
+            統一拡張子 <code>.hjp</code>（Hajimu Plugin）により、<strong>Windows・macOS・Linux</strong> で共通のファイルが使えます。</p>
+
+            <div style="display: grid; grid-template-columns: 250px 1fr; gap: 2rem; margin-top: 2rem;">
+                <div class="sidebar">
+                    <h3>目次</h3>
+                    <ul>
+                        <li><a href="#overview">概要</a></li>
+                        <li><a href="#quickstart">クイックスタート</a></li>
+                        <li><a href="#api">プラグイン API</a></li>
+                        <li><a href="#helpers">ヘルパー関数</a></li>
+                        <li><a href="#compile">コンパイル方法</a></li>
+                        <li><a href="#use">はじむから使う</a></li>
+                        <li><a href="#search-path">検索パス</a></li>
+                        <li><a href="#languages">対応言語</a></li>
+                        <li><a href="#jp-package">はじむパッケージ作成</a></li>
+                        <li><a href="#publish">パッケージの公開</a></li>
+                        <li><a href="#tips">Tips</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <!-- 概要 -->
+                    <section id="overview">
+                        <h3>概要</h3>
+                        <p>はじむのプラグインシステムは2種類の拡張方法を提供します。</p>
+
+                        <div class="features-grid" style="margin-top: 1rem;">
+                            <div class="feature-card">
+                                <div class="feature-icon">🔌</div>
+                                <h3>C拡張プラグイン (.hjp)</h3>
+                                <p>C/C++/Rust/Go 等で高速なネイティブライブラリを開発。数学関数、暗号処理、画像処理など計算量が多い処理に最適。</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">📦</div>
+                                <h3>はじむパッケージ (.jp)</h3>
+                                <p>はじむ言語自体で書かれたライブラリ。ユーティリティ、データ処理、ビジネスロジックなど汎用的な用途に。</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- クイックスタート -->
+                    <section id="quickstart">
+                        <h3>クイックスタート：最初のプラグイン</h3>
+                        <p>3ステップでプラグインを作成・使用できます。</p>
+
+                        <h4>ステップ 1：プラグインを書く</h4>
+                        <p><code>hello_plugin.c</code> を作成します。</p>
+                        <div class="code-example">
+<pre>#include "hajimu_plugin.h"
+
+// プラグイン関数: 挨拶を表示
+static Value fn_hello(int argc, Value *argv) {
+    (void)argc;
+    if (argv[0].type == VALUE_STRING) {
+        printf("こんにちは、%sさん！\n", argv[0].string.data);
+    }
+    return hajimu_null();
+}
+
+// 関数テーブル
+static HajimuPluginFunc functions[] = {
+    {"挨拶", fn_hello, 1, 1},
+};
+
+// 初期化関数（必須）
+HAJIMU_PLUGIN_EXPORT HajimuPluginInfo *hajimu_plugin_init(void) {
+    static HajimuPluginInfo info = {
+        .name        = "hello_plugin",
+        .version     = "1.0.0",
+        .author      = "あなたの名前",
+        .description = "挨拶プラグイン",
+        .functions   = functions,
+        .function_count = sizeof(functions) / sizeof(functions[0]),
+    };
+    return &info;
+}
+</pre>
+                        </div>
+
+                        <h4>ステップ 2：コンパイル</h4>
+                        <div class="code-example">
+<pre># macOS / Linux
+$ gcc -shared -fPIC -I/path/to/hajimu/include -o hello_plugin.hjp hello_plugin.c
+
+# Windows (MinGW)
+$ gcc -shared -I/path/to/hajimu/include -o hello_plugin.hjp hello_plugin.c</pre>
+                        </div>
+
+                        <h4>ステップ 3：はじむから使う</h4>
+                        <p><code>test.jp</code> を作成して実行します。</p>
+                        <div class="code-example">
+<pre>取り込む "hello_plugin" として HP
+HP["挨拶"]("太郎")
+// → こんにちは、太郎さん！</pre>
+                        </div>
+
+                        <div class="code-example">
+<pre>$ nihongo test.jp
+こんにちは、太郎さん！</pre>
+                        </div>
+                    </section>
+
+                    <!-- プラグイン API -->
+                    <section id="api">
+                        <h3>プラグイン API</h3>
+                        <p>プラグインの開発には <code>include/hajimu_plugin.h</code> をインクルードします。</p>
+
+                        <h4>必須構造体</h4>
+
+                        <p><strong>HajimuPluginFunc</strong> — 関数登録用</p>
+                        <div class="code-example">
+<pre>typedef struct {
+    const char *name;       // はじむ側に公開する関数名（日本語OK）
+    Value (*fn)(int, Value*); // 関数ポインタ
+    int min_args;           // 最小引数数
+    int max_args;           // 最大引数数（-1で可変長）
+} HajimuPluginFunc;</pre>
+                        </div>
+
+                        <p><strong>HajimuPluginInfo</strong> — プラグイン情報</p>
+                        <div class="code-example">
+<pre>typedef struct {
+    const char *name;           // プラグイン名
+    const char *version;        // バージョン
+    const char *author;         // 作者
+    const char *description;    // 説明
+    HajimuPluginFunc *functions;// 関数テーブル
+    int function_count;         // 関数の数
+} HajimuPluginInfo;</pre>
+                        </div>
+
+                        <h4>初期化関数（必須）</h4>
+                        <p>すべてのプラグインは <code>hajimu_plugin_init</code> 関数をエクスポートする必要があります。</p>
+                        <div class="code-example">
+<pre>HAJIMU_PLUGIN_EXPORT HajimuPluginInfo *hajimu_plugin_init(void) {
+    static HajimuPluginInfo info = {
+        .name        = "プラグイン名",
+        .version     = "1.0.0",
+        .author      = "作者",
+        .description = "説明",
+        .functions   = functions,      // HajimuPluginFunc 配列
+        .function_count = 関数の数,
+    };
+    return &info;
+}</pre>
+                        </div>
+
+                        <h4>関数シグネチャ</h4>
+                        <p>すべてのプラグイン関数は同じ型です：</p>
+                        <div class="code-example">
+<pre>Value 関数名(int argc, Value *argv)
+
+// argc: 引数の数
+// argv: 引数の配列（argv[0], argv[1], ...）
+// 戻り値: Value 型</pre>
+                        </div>
+                    </section>
+
+                    <!-- ヘルパー関数 -->
+                    <section id="helpers">
+                        <h3>ヘルパー関数</h3>
+                        <p>値の作成・操作に便利なインライン関数が用意されています。</p>
+
+                        <h4>値の作成</h4>
+                        <table>
+                            <thead>
+                                <tr><th>関数</th><th>説明</th><th>例</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>hajimu_null()</code></td>
+                                    <td>NULL値を作成</td>
+                                    <td><code>return hajimu_null();</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>hajimu_number(n)</code></td>
+                                    <td>数値を作成</td>
+                                    <td><code>return hajimu_number(3.14);</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>hajimu_bool(b)</code></td>
+                                    <td>真偽値を作成</td>
+                                    <td><code>return hajimu_bool(true);</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>hajimu_string(s)</code></td>
+                                    <td>文字列を作成（コピー）</td>
+                                    <td><code>return hajimu_string("結果");</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>hajimu_array()</code></td>
+                                    <td>空の配列を作成</td>
+                                    <td><code>Value arr = hajimu_array();</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h4>配列操作</h4>
+                        <div class="code-example">
+<pre>// 配列を作成して要素を追加
+Value arr = hajimu_array();
+hajimu_array_push(&arr, hajimu_number(1));
+hajimu_array_push(&arr, hajimu_number(2));
+hajimu_array_push(&arr, hajimu_string("三"));
+return arr;</pre>
+                        </div>
+
+                        <h4>引数の型チェック</h4>
+                        <div class="code-example">
+<pre>static Value fn_example(int argc, Value *argv) {
+    // 引数の数チェック
+    if (!hajimu_check_argc(argc, 2)) return hajimu_null();
+    
+    // 引数の型チェック
+    if (!hajimu_check_type(&argv[0], VALUE_NUMBER)) {
+        fprintf(stderr, "エラー: 第1引数は数値が必要\n");
+        return hajimu_null();
+    }
+    
+    double x = argv[0].number;
+    double y = argv[1].number;
+    return hajimu_number(x + y);
+}</pre>
+                        </div>
+
+                        <h4>Value の型一覧</h4>
+                        <table>
+                            <thead>
+                                <tr><th>型定数</th><th>説明</th><th>フィールド</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><code>VALUE_NULL</code></td><td>空</td><td>-</td></tr>
+                                <tr><td><code>VALUE_NUMBER</code></td><td>数値</td><td><code>.number</code> (double)</td></tr>
+                                <tr><td><code>VALUE_BOOL</code></td><td>真偽値</td><td><code>.boolean</code> (bool)</td></tr>
+                                <tr><td><code>VALUE_STRING</code></td><td>文字列</td><td><code>.string.data</code>, <code>.string.length</code></td></tr>
+                                <tr><td><code>VALUE_ARRAY</code></td><td>配列</td><td><code>.array.elements</code>, <code>.array.length</code></td></tr>
+                                <tr><td><code>VALUE_DICT</code></td><td>辞書</td><td><code>.dict.keys</code>, <code>.dict.values</code></td></tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <!-- コンパイル方法 -->
+                    <section id="compile">
+                        <h3>コンパイル方法</h3>
+                        <p>すべてのプラットフォームで出力ファイル名を <code>.hjp</code> にします。</p>
+
+                        <h4>macOS</h4>
+                        <div class="code-example">
+<pre>$ gcc -shared -fPIC -I/path/to/hajimu/include -o my_plugin.hjp my_plugin.c</pre>
+                        </div>
+
+                        <h4>Linux</h4>
+                        <div class="code-example">
+<pre>$ gcc -shared -fPIC -I/path/to/hajimu/include -o my_plugin.hjp my_plugin.c -lm</pre>
+                        </div>
+
+                        <h4>Windows (MinGW)</h4>
+                        <div class="code-example">
+<pre>$ gcc -shared -I/path/to/hajimu/include -o my_plugin.hjp my_plugin.c</pre>
+                        </div>
+
+                        <h4>Windows (MSVC)</h4>
+                        <div class="code-example">
+<pre>&gt; cl /LD /I C:\path\to\hajimu\include /Fe:my_plugin.hjp my_plugin.c</pre>
+                        </div>
+
+                        <h4>Makefile の例</h4>
+                        <div class="code-example">
+<pre>PLUGIN = my_plugin.hjp
+SRC    = my_plugin.c
+INCLUDE = -I../../include
+
+UNAME := $(shell uname -s)
+ifeq ($(UNAME), Darwin)
+    SHARED_FLAGS = -shared -dynamiclib
+else
+    SHARED_FLAGS = -shared
+endif
+
+$(PLUGIN): $(SRC)
+	gcc $(SHARED_FLAGS) -fPIC $(INCLUDE) -o $@ $&lt; -lm
+
+clean:
+	rm -f $(PLUGIN)</pre>
+                        </div>
+                    </section>
+
+                    <!-- はじむから使う -->
+                    <section id="use">
+                        <h3>はじむから使う</h3>
+
+                        <h4>名前空間付きインポート（推奨）</h4>
+                        <div class="code-example">
+<pre>取り込む "math_plugin" として 数学P
+
+// 関数の呼び出し
+表示(数学P["二乗"](5))       // → 25
+表示(数学P["階乗"](6))       // → 720
+表示(数学P["平方根"](144))   // → 12</pre>
+                        </div>
+
+                        <h4>直接インポート</h4>
+                        <div class="code-example">
+<pre>取り込む "math_plugin"
+
+// 関数が直接使える
+表示(二乗(5))     // → 25
+表示(階乗(6))     // → 720</pre>
+                        </div>
+
+                        <h4>メタ情報へのアクセス</h4>
+                        <div class="code-example">
+<pre>取り込む "my_plugin" として P
+
+表示(P["__名前__"])         // → "my_plugin"
+表示(P["__バージョン__"])   // → "1.0.0"
+表示(P["__作者__"])         // → "作者名"
+表示(P["__説明__"])         // → "プラグインの説明"</pre>
+                        </div>
+                    </section>
+
+                    <!-- 検索パス -->
+                    <section id="search-path">
+                        <h3>プラグイン検索パス</h3>
+                        <p>拡張子なしで <code>取り込む "名前"</code> とすると、以下の順序で <code>.hjp</code> ファイルを自動検索します。</p>
+
+                        <table>
+                            <thead>
+                                <tr><th>優先度</th><th>検索場所</th><th>例</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>呼び出し元ファイルからの相対パス</td>
+                                    <td><code>./plugins/my_plugin.hjp</code></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>カレントディレクトリ</td>
+                                    <td><code>./my_plugin.hjp</code></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>ローカルパッケージ</td>
+                                    <td><code>./hajimu_packages/my_plugin.hjp</code></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>グローバルプラグインディレクトリ</td>
+                                    <td><code>~/.hajimu/plugins/my_plugin.hjp</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h4>グローバルインストール</h4>
+                        <p>頻繁に使うプラグインは <code>~/.hajimu/plugins/</code> にコピーすると、どのプロジェクトからでも使えます。</p>
+                        <div class="code-example">
+<pre># グローバルインストール
+$ mkdir -p ~/.hajimu/plugins
+$ cp my_plugin.hjp ~/.hajimu/plugins/
+
+# どのディレクトリからでも使用可能
+$ nihongo -c '取り込む "my_plugin" として P; 表示(P["__名前__"])'</pre>
+                        </div>
+                    </section>
+
+                    <!-- 対応言語 -->
+                    <section id="languages">
+                        <h3>対応言語</h3>
+                        <p>共有ライブラリを生成できる言語であれば、C以外でもプラグインを開発できます。<br>
+                        <strong>要件</strong>：<code>hajimu_plugin_init</code> シンボルをCリンケージ（<code>extern "C"</code>）でエクスポートし、<code>HajimuPluginInfo *</code> を返すこと。</p>
+
+                        <table>
+                            <thead>
+                                <tr><th>言語</th><th>コンパイル例</th><th>備考</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>C</td>
+                                    <td><code>gcc -shared -fPIC -o plugin.hjp plugin.c</code></td>
+                                    <td>標準的な方法</td>
+                                </tr>
+                                <tr>
+                                    <td>C++</td>
+                                    <td><code>g++ -shared -fPIC -o plugin.hjp plugin.cpp</code></td>
+                                    <td><code>extern "C"</code> でラップ</td>
+                                </tr>
+                                <tr>
+                                    <td>Rust</td>
+                                    <td><code>cargo build --release</code></td>
+                                    <td>cdylib crate-type、出力を .hjp にリネーム</td>
+                                </tr>
+                                <tr>
+                                    <td>Go</td>
+                                    <td><code>go build -buildmode=c-shared -o plugin.hjp</code></td>
+                                    <td>//export コメント付き</td>
+                                </tr>
+                                <tr>
+                                    <td>Zig</td>
+                                    <td><code>zig build-lib -dynamic</code></td>
+                                    <td>出力を .hjp にリネーム</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h4>C++ での例</h4>
+                        <div class="code-example">
+<pre>#include "hajimu_plugin.h"
+#include &lt;cmath&gt;
+
+static Value fn_sin(int argc, Value *argv) {
+    (void)argc;
+    return hajimu_number(std::sin(argv[0].number));
+}
+
+static HajimuPluginFunc functions[] = {
+    {"サイン", fn_sin, 1, 1},
+};
+
+extern "C" {
+    HAJIMU_PLUGIN_EXPORT HajimuPluginInfo *hajimu_plugin_init(void) {
+        static HajimuPluginInfo info = {
+            .name        = "trig_plugin",
+            .version     = "1.0.0",
+            .author      = "作者",
+            .description = "三角関数プラグイン",
+            .functions   = functions,
+            .function_count = 1,
+        };
+        return &info;
+    }
+}</pre>
+                        </div>
+                    </section>
+
+                    <!-- はじむパッケージ作成 -->
+                    <section id="jp-package">
+                        <h3>はじむパッケージ（.jp）の作成</h3>
+                        <p>はじむ言語自体で書かれたライブラリも作成・公開できます。</p>
+
+                        <h4>ステップ 1：プロジェクト初期化</h4>
+                        <div class="code-example">
+<pre>$ mkdir my_package && cd my_package
+$ hajimu パッケージ 初期化
+✓ hajimu.json を作成しました</pre>
+                        </div>
+
+                        <h4>ステップ 2：hajimu.json を編集</h4>
+                        <div class="code-example">
+<pre>{
+  "名前": "my_package",
+  "バージョン": "1.0.0",
+  "説明": "便利なユーティリティパッケージ",
+  "作者": "あなたの名前",
+  "メイン": "main.jp",
+  "依存": {}
+}</pre>
+                        </div>
+
+                        <h4>ステップ 3：メインファイルを書く</h4>
+                        <p><code>main.jp</code>（hajimu.json の「メイン」で指定したファイル）を作成します。</p>
+                        <div class="code-example">
+<pre>// main.jp - パッケージのエントリポイント
+
+// 数学ユーティリティ
+関数 円の面積(半径):
+    戻す 3.14159 * 半径 * 半径
+終わり
+
+関数 円の周長(半径):
+    戻す 2 * 3.14159 * 半径
+終わり
+
+// 文字列ユーティリティ
+関数 挨拶文(名前):
+    戻す "こんにちは、" + 名前 + "さん！"
+終わり
+
+関数 繰返し文字(文字, 回数):
+    変数 結果 = ""
+    繰り返す i から 0 まで 回数:
+        結果 = 結果 + 文字
+    終わり
+    戻す 結果
+終わり</pre>
+                        </div>
+
+                        <h4>ステップ 4：使用する側から利用</h4>
+                        <div class="code-example">
+<pre>// 別のプロジェクトでパッケージをインストール
+$ hajimu パッケージ 追加 ユーザー名/my_package</pre>
+                        </div>
+                        <div class="code-example">
+<pre>// はじむコードから使用
+取り込む "my_package" として ユーティリティ
+
+表示(ユーティリティ.円の面積(5))    // → 78.53975
+表示(ユーティリティ.挨拶文("太郎")) // → こんにちは、太郎さん！</pre>
+                        </div>
+
+                        <h4>パッケージ構造の例</h4>
+                        <div class="code-example">
+<pre>my_package/
+├── hajimu.json          # マニフェスト
+├── main.jp              # エントリポイント
+├── lib/
+│   ├── math.jp          # サブモジュール
+│   └── string.jp        # サブモジュール
+├── examples/
+│   └── usage.jp         # 使用例
+└── README.md            # ドキュメント</pre>
+                        </div>
+
+                        <h4>サブモジュールを使うパッケージ</h4>
+                        <div class="code-example">
+<pre>// main.jp
+取り込む "lib/math" として 数学
+取り込む "lib/string" として 文字列
+
+// 他のファイルから公開したい関数を再エクスポート
+関数 円の面積(r):
+    戻す 数学.円の面積(r)
+終わり</pre>
+                        </div>
+                    </section>
+
+                    <!-- パッケージの公開 -->
+                    <section id="publish">
+                        <h3>パッケージの公開</h3>
+                        <p>作成したパッケージは GitHub で公開できます。</p>
+
+                        <h4>公開手順</h4>
+                        <div class="code-example">
+<pre># 1. GitHub リポジトリを作成
+$ git init
+$ git add -A
+$ git commit -m "v1.0.0: 初回リリース"
+$ git remote add origin https://github.com/ユーザー名/my_package.git
+$ git push -u origin main
+
+# 2. 他のユーザーがインストール
+$ hajimu パッケージ 追加 ユーザー名/my_package</pre>
+                        </div>
+
+                        <h4>依存パッケージの管理</h4>
+                        <p>パッケージが他のパッケージに依存する場合、<code>hajimu.json</code> の「依存」に記述します。</p>
+                        <div class="code-example">
+<pre>{
+  "名前": "my_advanced_package",
+  "バージョン": "1.0.0",
+  "説明": "高機能パッケージ",
+  "作者": "作者名",
+  "メイン": "main.jp",
+  "依存": {
+    "utils": "ユーザー名/utils_package",
+    "math_extra": "ユーザー名/math_extra"
+  }
+}</pre>
+                        </div>
+                        <p>依存パッケージは <code>hajimu パッケージ インストール</code> で自動的にインストールされます。</p>
+
+                        <h4>パッケージ管理コマンド</h4>
+                        <table>
+                            <thead>
+                                <tr><th>コマンド</th><th>説明</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>hajimu パッケージ 初期化</code></td>
+                                    <td>プロジェクトを初期化（hajimu.json 作成）</td>
+                                </tr>
+                                <tr>
+                                    <td><code>hajimu パッケージ 追加 &lt;URL&gt;</code></td>
+                                    <td>パッケージをインストール</td>
+                                </tr>
+                                <tr>
+                                    <td><code>hajimu パッケージ 削除 &lt;名前&gt;</code></td>
+                                    <td>パッケージを削除</td>
+                                </tr>
+                                <tr>
+                                    <td><code>hajimu パッケージ 一覧</code></td>
+                                    <td>インストール済み一覧表示</td>
+                                </tr>
+                                <tr>
+                                    <td><code>hajimu パッケージ インストール</code></td>
+                                    <td>hajimu.json の全依存をインストール</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h4>インストール先</h4>
+                        <table>
+                            <thead>
+                                <tr><th>種類</th><th>パス</th><th>用途</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ローカル</td>
+                                    <td><code>./hajimu_packages/</code></td>
+                                    <td>プロジェクト固有のパッケージ</td>
+                                </tr>
+                                <tr>
+                                    <td>グローバル</td>
+                                    <td><code>~/.hajimu/packages/</code></td>
+                                    <td>全プロジェクト共通のパッケージ</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <!-- Tips -->
+                    <section id="tips">
+                        <h3>Tips &amp; ベストプラクティス</h3>
+
+                        <div class="philosophy">
+                            <div class="philosophy-item">
+                                <h3>🎯 関数名は日本語で</h3>
+                                <p>はじむのユーザーが直感的に使えるよう、関数名には日本語を使いましょう。<code>"square"</code> ではなく <code>"二乗"</code> のように。</p>
+                            </div>
+                            <div class="philosophy-item">
+                                <h3>🛡️ 引数チェックを忘れずに</h3>
+                                <p><code>hajimu_check_argc()</code> と <code>hajimu_check_type()</code> で引数を検証しましょう。不正な引数でクラッシュするプラグインは避けてください。</p>
+                            </div>
+                            <div class="philosophy-item">
+                                <h3>📝 メタ情報を充実させる</h3>
+                                <p><code>name</code>, <code>version</code>, <code>author</code>, <code>description</code> をしっかり設定しましょう。ユーザーが <code>P["__名前__"]</code> でプラグイン情報を確認できます。</p>
+                            </div>
+                            <div class="philosophy-item">
+                                <h3>📦 .hjp はどこでも同じ</h3>
+                                <p><code>.hjp</code> ファイルは OS ごとにビルドする必要がありますが、はじむコード側は一切変更不要です。同じ <code>取り込む</code> 文で動きます。</p>
+                            </div>
+                        </div>
+
+                        <h4>完全なサンプルプラグイン</h4>
+                        <p>リポジトリの <code>examples/plugins/</code> に数学関数プラグイン（8関数）のサンプルが同梱されています。</p>
+                        <div class="code-example">
+<pre>// サンプルで提供される関数
+二乗(5)       → 25
+立方(3)       → 27
+階乗(6)       → 720
+フィボナッチ(10) → 55
+GCD(12, 8)    → 4
+平方根(144)   → 12
+累乗(2, 10)   → 1024
+絶対値(-42)   → 42</pre>
+                        </div>
+                        <p><a href="https://github.com/ReoShiozawa/hajimu/tree/main/examples/plugins" target="_blank">サンプルプラグインを見る →</a></p>
+                    </section>
+
+                    <!-- 次のステップ -->
+                    <section>
+                        <h3>次のステップ</h3>
+                        <ul>
+                            <li><a href="reference.html#plugins">リファレンスでプラグイン構文を確認する</a></li>
+                            <li><a href="reference.html#packages">パッケージ管理コマンドの詳細を見る</a></li>
+                            <li><a href="https://github.com/ReoShiozawa/hajimu/tree/main/examples/plugins" target="_blank">サンプルプラグインのソースコード</a></li>
+                            <li><a href="https://github.com/ReoShiozawa/hajimu/blob/main/include/hajimu_plugin.h" target="_blank">hajimu_plugin.h ヘッダーの完全なソース</a></li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>ドキュメント</h4>
+                <ul>
+                    <li><a href="guide.html">始めるガイド</a></li>
+                    <li><a href="reference.html">リファレンス</a></li>
+                    <li><a href="plugins.html">プラグイン開発</a></li>
+                    <li><a href="examples.html">コード例</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>コミュニティ</h4>
+                <ul>
+                    <li><a href="https://github.com/ReoShiozawa/hajimu" target="_blank">GitHub</a></li>
+                    <li><a href="https://github.com/ReoShiozawa/hajimu/discussions" target="_blank">ディスカッション</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>リソース</h4>
+                <ul>
+                    <li><a href="https://github.com/ReoShiozawa/hajimu/blob/main/include/hajimu_plugin.h" target="_blank">プラグインヘッダー</a></li>
+                    <li><a href="https://github.com/ReoShiozawa/hajimu/tree/main/examples/plugins" target="_blank">サンプルプラグイン</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 はじむ プロジェクト. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <button id="scrollTop">↑</button>
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>
