@@ -688,6 +688,45 @@ GCD(12, 8)    → 4
                         <p><a href="https://github.com/ReoShiozawa/hajimu/tree/main/examples/plugins" target="_blank">サンプルプラグインを見る →</a></p>
                     </section>
 
+                    <!-- ランタイムコールバック -->
+                    <section id="runtime-callback">
+                        <h3>ランタイムコールバック（v1.2.0+）</h3>
+                        <p>プラグインからはじむの関数を呼び出すことができます。これにより、Express スタイルのコールバック関数ハンドラなどの高度な連携パターンが実現できます。</p>
+
+                        <h4>セットアップ</h4>
+<pre><code class="language-c">// hajimu_plugin.h をインクルード
+#include "hajimu_plugin.h"
+
+// ランタイム注入エントリポイント（インタプリタが自動呼び出し）
+HAJIMU_PLUGIN_EXPORT void hajimu_plugin_set_runtime(HajimuRuntime *rt) {
+    __hajimu_runtime = rt;
+}</code></pre>
+
+                        <h4>はじむ関数の呼び出し</h4>
+<pre><code class="language-c">// はじむの関数を引数として受け取り、コールバックする
+static Value fn_example(int argc, Value *argv) {
+    if (argc >= 1 && hajimu_runtime_available()) {
+        Value arg = hajimu_string("test");
+        return hajimu_call(&argv[0], 1, &arg);
+    }
+    return hajimu_null();
+}</code></pre>
+
+                        <p><code>hajimu_call()</code> は <code>VALUE_FUNCTION</code>（ユーザー定義関数・ラムダ）と <code>VALUE_BUILTIN</code>（組み込み関数）の両方に対応しています。</p>
+
+                        <h4>実用例: hajimu_web v3.0 のルートハンドラ</h4>
+<pre><code class="language-hajimu">取り込む "hajimu_web" として ウェブ
+
+ウェブ.サーバー作成(3000)
+
+関数 トップページ(リクエスト):
+    返す "&lt;h1&gt;こんにちは！&lt;/h1&gt;"
+終わり
+
+ウェブ.GET("/", トップページ)
+ウェブ.起動()</code></pre>
+                    </section>
+
                     <!-- 次のステップ -->
                     <section>
                         <h3>次のステップ</h3>
