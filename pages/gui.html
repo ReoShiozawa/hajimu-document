@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUI 開発 - はじむ</title>
+    <meta name="description" content="はじむ言語で日本語 GUI アプリケーションを開発。1,074の組み込み関数で、ウィンドウ、ボタン、テーブル、チャート、3D描画まで対応。外部ライブラリ不要。">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <noscript>
+        <style>body { opacity: 1 !important; }</style>
+    </noscript>
+</head>
+<body class="page-loading">
+    <header>
+        <div class="header-content">
+            <a href="../index.html" class="logo">
+                <span class="logo-icon">始</span>
+                <span>はじむ</span>
+            </a>
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav>
+                <a href="../index.html">ホーム</a>
+                <a href="guide.html">始める</a>
+                <a href="reference.html">リファレンス</a>
+                <a href="examples.html">例</a>
+                <a href="gui.html" class="active">GUI</a>
+                <a href="plugins.html">プラグイン開発</a>
+                <a href="faq.html">FAQ</a>
+                <a href="contributing.html">貢献</a>
+                <a href="https://github.com/ReoShiozawa/hajimu" target="_blank">GitHub</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-section">
+            <h2>hajimu_gui — 日本語 GUI フレームワーク</h2>
+            <p>はじむ言語のパッケージ <code>hajimu_gui</code> を使って、日本語でデスクトップ GUI アプリケーションを開発できます。<br>
+            外部ライブラリ不要、OS 標準 API のみで動作するクロスプラットフォーム対応の GUI フレームワークです。</p>
+
+            <!-- 概要統計 -->
+            <div class="features-grid" style="margin-top: 2rem;">
+                <div class="feature-card">
+                    <div class="feature-icon">🖼️</div>
+                    <h3>1,074 関数</h3>
+                    <p>ウィジェット、描画、アニメーション、ファイル操作など網羅的な機能</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>外部依存なし</h3>
+                    <p>macOS (Cocoa)、Linux (X11)、Windows (Win32) の OS 標準 API のみ使用</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>自製レンダラー</h3>
+                    <p>hjp_render.c による高品質な 2D 描画。アンチエイリアス対応</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h3>すべて日本語</h3>
+                    <p>関数名からパラメータまで、すべて日本語で記述可能</p>
+                </div>
+            </div>
+
+            <!-- インストール -->
+            <section style="margin-top: 3rem;">
+                <h3>インストール</h3>
+                <div class="code-example">
+<pre>git clone https://github.com/ReoShiozawa/hajimu_gui.git
+cd hajimu_gui
+make
+make install</pre>
+                </div>
+                <p>外部ライブラリのインストールは不要です。<code>make</code> だけでビルドできます。</p>
+            </section>
+
+            <!-- Hello World -->
+            <section>
+                <h3>Hello World</h3>
+                <p>最小限の GUI プログラム：</p>
+                <div class="code-example">
+<pre>取り込む "hajimu_gui" として GUI
+
+変数 アプリ = GUI.アプリ作成("はじめてのGUI", 400, 300)
+
+GUI.描画ループ(アプリ, 関数():
+    GUI.ラベル("こんにちは、世界！")
+終わり)
+
+GUI.アプリ終了(アプリ)</pre>
+                </div>
+                <div class="code-example">
+<pre>hajimu hello_gui.jp</pre>
+                </div>
+            </section>
+
+            <!-- 仕組み -->
+            <section>
+                <h3>基本的な仕組み</h3>
+                <p>hajimu_gui は<strong>即時モード</strong>の GUI フレームワークです。描画ループの中で毎フレーム、ウィジェット関数を呼び出します。</p>
+                <div class="code-example">
+<pre>取り込む "hajimu_gui" として GUI
+
+変数 アプリ = GUI.アプリ作成("タイトル", 800, 600)
+
+// 状態変数は描画ループの外で宣言
+変数 回数 = 0
+変数 名前 = ""
+
+GUI.描画ループ(アプリ, 関数():
+    // ボタン — クリックされると「真」を返す
+    もし GUI.ボタン("カウントアップ") なら
+        回数 = 回数 + 1
+    終わり
+
+    // テキスト入力 — 更新後の値を返す
+    名前 = GUI.テキスト入力("名前", 名前)
+
+    // ラベル — テキストを表示
+    GUI.ラベル("回数: " + 回数)
+    GUI.ラベル("入力: " + 名前)
+終わり)
+
+GUI.アプリ終了(アプリ)</pre>
+                </div>
+            </section>
+
+            <!-- 主要機能 -->
+            <section>
+                <h3>主要機能</h3>
+
+                <h4>ウィジェット</h4>
+                <table>
+                    <thead>
+                        <tr><th>関数</th><th>説明</th><th>例</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>ボタン(ラベル)</code></td><td>クリックボタン</td><td><code>もし GUI.ボタン("OK") なら ...</code></td></tr>
+                        <tr><td><code>テキスト入力(ラベル, 値)</code></td><td>テキスト入力欄</td><td><code>名前 = GUI.テキスト入力("名前", 名前)</code></td></tr>
+                        <tr><td><code>チェックボックス(ラベル, 値)</code></td><td>チェックボックス</td><td><code>有効 = GUI.チェックボックス("通知", 有効)</code></td></tr>
+                        <tr><td><code>スライダー(ラベル, 値, 最小, 最大)</code></td><td>スライダー</td><td><code>音量 = GUI.スライダー("音量", 音量, 0, 100)</code></td></tr>
+                        <tr><td><code>コンボボックス(ラベル, 選択肢, 値)</code></td><td>ドロップダウン</td><td><code>色 = GUI.コンボボックス("色", 色一覧, 色)</code></td></tr>
+                        <tr><td><code>リスト(ラベル, 配列, 選択, 行数)</code></td><td>リストボックス</td><td><code>選択 = GUI.リスト("果物", 配列, 選択, 5)</code></td></tr>
+                        <tr><td><code>数値入力(ラベル, 値, 最小, 最大)</code></td><td>数値入力</td><td><code>年齢 = GUI.数値入力("年齢", 年齢, 0, 120)</code></td></tr>
+                        <tr><td><code>テキストエリア(ラベル, 値, 行数)</code></td><td>複数行テキスト</td><td><code>文 = GUI.テキストエリア("内容", 文, 10)</code></td></tr>
+                    </tbody>
+                </table>
+
+                <h4>レイアウト</h4>
+                <table>
+                    <thead>
+                        <tr><th>関数</th><th>説明</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>パネル開始(名前)</code> / <code>パネル終了()</code></td><td>枠線付きグループ</td></tr>
+                        <tr><td><code>横並び開始()</code> / <code>横並び終了()</code></td><td>水平レイアウト</td></tr>
+                        <tr><td><code>グリッド開始(列数)</code> / <code>グリッド終了()</code></td><td>グリッドレイアウト</td></tr>
+                        <tr><td><code>タブバー(タブ配列, 値)</code> / <code>タブ内容(値, N)</code></td><td>タブ切替</td></tr>
+                        <tr><td><code>スクロール領域開始(名前, 高さ)</code> / <code>スクロール領域終了()</code></td><td>スクロール領域</td></tr>
+                        <tr><td><code>折りたたみ開始(ラベル)</code> / <code>折りたたみ終了()</code></td><td>折りたたみセクション</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>描画</h4>
+                <table>
+                    <thead>
+                        <tr><th>関数</th><th>説明</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>四角塗り(x, y, w, h, 色)</code></td><td>塗りつぶし四角形</td></tr>
+                        <tr><td><code>円塗り(x, y, r, 色)</code></td><td>塗りつぶし円</td></tr>
+                        <tr><td><code>線描画(x1, y1, x2, y2, 色, 太さ)</code></td><td>直線</td></tr>
+                        <tr><td><code>テキスト描画(テキスト, x, y, 色)</code></td><td>任意位置にテキスト</td></tr>
+                        <tr><td><code>画像描画(パス, x, y, w, h)</code></td><td>画像表示</td></tr>
+                        <tr><td><code>グラデーション四角(x, y, w, h, 色1, 色2)</code></td><td>グラデーション</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>データ表示</h4>
+                <table>
+                    <thead>
+                        <tr><th>関数</th><th>説明</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>テーブル作成(列配列)</code> / <code>テーブル表示(T)</code></td><td>表形式データ</td></tr>
+                        <tr><td><code>ツリー作成()</code> / <code>ツリー表示(T)</code></td><td>ツリービュー</td></tr>
+                        <tr><td><code>棒グラフ(タイトル, ラベル, データ, 高さ)</code></td><td>棒グラフ</td></tr>
+                        <tr><td><code>折れ線グラフ(タイトル, ラベル, データ, 高さ)</code></td><td>折れ線グラフ</td></tr>
+                        <tr><td><code>円グラフ(タイトル, ラベル, データ, サイズ)</code></td><td>円グラフ</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- TODOアプリ -->
+            <section>
+                <h3>実践例：TODO アプリ</h3>
+                <p>複数のウィジェットを組み合わせた実用例です。</p>
+                <div class="code-example">
+<pre>取り込む "hajimu_gui" として GUI
+
+変数 アプリ = GUI.アプリ作成("TODOアプリ", 500, 600)
+変数 タスク一覧 = []
+変数 完了一覧 = []
+変数 新規タスク = ""
+
+GUI.描画ループ(アプリ, 関数():
+    GUI.見出し("📝 TODO リスト")
+
+    // 新規タスク入力
+    GUI.横並び開始()
+        新規タスク = GUI.テキスト入力("新しいタスク", 新規タスク)
+        もし GUI.ボタン("追加") なら
+            もし 新規タスク != "" なら
+                タスク一覧 = タスク一覧 + [新規タスク]
+                完了一覧 = 完了一覧 + [偽]
+                新規タスク = ""
+            終わり
+        終わり
+    GUI.横並び終了()
+
+    GUI.区切り線()
+
+    // タスク一覧
+    GUI.スクロール領域開始("タスク", 400)
+        繰り返す 変数 i = 0 から タスク一覧の長さ - 1 まで
+            GUI.横並び開始()
+                完了一覧[i] = GUI.チェックボックス("##" + i, 完了一覧[i])
+                もし 完了一覧[i] なら
+                    GUI.色付きラベル("✅ " + タスク一覧[i], "#888888")
+                でなければ
+                    GUI.ラベル("⬜ " + タスク一覧[i])
+                終わり
+            GUI.横並び終了()
+        終わり
+    GUI.スクロール領域終了()
+
+    // ステータスバー
+    GUI.区切り線()
+    変数 完了数 = 0
+    繰り返す 変数 j = 0 から 完了一覧の長さ - 1 まで
+        もし 完了一覧[j] == 真 なら
+            完了数 = 完了数 + 1
+        終わり
+    終わり
+    GUI.プログレスバー("進捗", 完了数 / タスク一覧の長さ)
+終わり)
+
+GUI.アプリ終了(アプリ)</pre>
+                </div>
+            </section>
+
+            <!-- 全機能一覧 -->
+            <section>
+                <h3>Phase 1〜130 — 機能の全体像</h3>
+                <p>hajimu_gui は 130 フェーズにわたって段階的に開発されました。主な機能カテゴリ：</p>
+                <table>
+                    <thead>
+                        <tr><th>カテゴリ</th><th>Phase</th><th>機能例</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>基本ウィジェット</td><td>1〜4</td><td>ボタン、テキスト入力、チェックボックス、スライダー</td></tr>
+                        <tr><td>描画・図形</td><td>5〜6</td><td>四角、円、線、画像、グラデーション</td></tr>
+                        <tr><td>データ構造</td><td>7〜8</td><td>テーブル、ツリー、ドラッグ＆ドロップ</td></tr>
+                        <tr><td>テーマ・スタイル</td><td>10〜11</td><td>ダーク/ライトテーマ、アニメーション</td></tr>
+                        <tr><td>高度な描画</td><td>12〜13</td><td>パス描画、ベジェ曲線、SVG</td></tr>
+                        <tr><td>メニュー・ツールバー</td><td>14〜16</td><td>メニューバー、コンテキストメニュー、ステータスバー</td></tr>
+                        <tr><td>ドック・ウィザード</td><td>17〜19</td><td>ドック可能パネル、ウィザード、スプリッター</td></tr>
+                        <tr><td>リッチテキスト</td><td>20〜21</td><td>リッチテキスト編集、構文ハイライト</td></tr>
+                        <tr><td>カレンダー・日付</td><td>22〜23</td><td>カレンダー、日付選択、タイムライン</td></tr>
+                        <tr><td>チャート</td><td>25〜27</td><td>棒グラフ、折れ線、円グラフ、レーダーチャート</td></tr>
+                        <tr><td>マップ・地理</td><td>50〜51</td><td>マップ表示、マーカー、ルート</td></tr>
+                        <tr><td>音声・動画</td><td>53〜55</td><td>音声再生、録音、動画プレイヤー</td></tr>
+                        <tr><td>3D描画</td><td>60〜63</td><td>3D初期化、立方体、回転、照明</td></tr>
+                        <tr><td>アクセシビリティ</td><td>70〜73</td><td>スクリーンリーダー、ハイコントラスト</td></tr>
+                        <tr><td>国際化</td><td>80〜81</td><td>多言語対応、RTL</td></tr>
+                        <tr><td>テスト</td><td>90〜93</td><td>UIテスト、スクリーンショット比較</td></tr>
+                        <tr><td>マテリアル</td><td>100〜103</td><td>マテリアルデザインウィジェット</td></tr>
+                        <tr><td>Cupertino</td><td>110〜113</td><td>iOS風デザインウィジェット</td></tr>
+                        <tr><td>最新</td><td>121〜130</td><td>カスタムペインター、Sliver、Hero、セマンティクス</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- リンク -->
+            <section>
+                <h3>さらに詳しく</h3>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📖</div>
+                        <h3>チュートリアル</h3>
+                        <p>ゼロから学ぶ 20 章構成のステップバイステップガイド。</p>
+                        <p><a href="https://github.com/ReoShiozawa/hajimu_gui/blob/main/docs/TUTORIAL.md" target="_blank">TUTORIAL.md を読む →</a></p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📚</div>
+                        <h3>API リファレンス</h3>
+                        <p>全 1,074 関数の完全なリファレンスドキュメント。</p>
+                        <p><a href="https://github.com/ReoShiozawa/hajimu_gui/blob/main/docs/REFERENCE.md" target="_blank">REFERENCE.md を読む →</a></p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🗺️</div>
+                        <h3>ロードマップ</h3>
+                        <p>Phase 1〜130 の全機能一覧と開発計画。</p>
+                        <p><a href="https://github.com/ReoShiozawa/hajimu_gui/blob/main/docs/ROADMAP.md" target="_blank">ROADMAP.md を読む →</a></p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💻</div>
+                        <h3>GitHub</h3>
+                        <p>ソースコード、Issue、ディスカッション。</p>
+                        <p><a href="https://github.com/ReoShiozawa/hajimu_gui" target="_blank">リポジトリを見る →</a></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 技術スタック -->
+            <section>
+                <h3>技術スタック</h3>
+                <table>
+                    <thead>
+                        <tr><th>コンポーネント</th><th>技術</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>実装言語</td><td>C 言語（単一ファイル 23,000 行）</td></tr>
+                        <tr><td>macOS</td><td>Cocoa (AppKit / NSWindow / NSOpenGLView)</td></tr>
+                        <tr><td>Linux</td><td>X11 + GLX</td></tr>
+                        <tr><td>Windows</td><td>Win32 API (CreateWindow / wglCreateContext)</td></tr>
+                        <tr><td>レンダラー</td><td>自作 hjp_render.c</td></tr>
+                        <tr><td>フォント</td><td>自作フォント処理（hjp_platform 経由 — CoreText / FreeType）</td></tr>
+                        <tr><td>画像</td><td>自作画像読み込み（hjp_platform 経由 — ImageIO / system）</td></tr>
+                        <tr><td>日本語フォント</td><td>Noto Sans CJK JP（同梱）</td></tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>ドキュメント</h4>
+                <ul>
+                    <li><a href="guide.html">始めるガイド</a></li>
+                    <li><a href="reference.html">リファレンス</a></li>
+                    <li><a href="examples.html">コード例</a></li>
+                    <li><a href="gui.html">GUI 開発</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>コミュニティ</h4>
+                <ul>
+                    <li><a href="https://github.com/ReoShiozawa/hajimu" target="_blank">GitHub</a></li>
+                    <li><a href="https://github.com/ReoShiozawa/hajimu/discussions" target="_blank">ディスカッション</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 はじむ プロジェクト. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <button id="scrollTop">↑</button>
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

@@ -26,6 +26,7 @@
                 <a href="guide.html">始める</a>
                 <a href="reference.html">リファレンス</a>
                 <a href="examples.html" class="active">例</a>
+                <a href="gui.html">GUI</a>
                 <a href="plugins.html">プラグイン開発</a>
                 <a href="faq.html">FAQ</a>
                 <a href="contributing.html">貢献</a>
@@ -533,6 +534,76 @@
 // 実行
 変数 結果 = バックアップ("./documents", "./backup")</pre>
                 </div>
+            </section>
+
+            <!-- GUI -->
+            <section>
+                <h3>GUI アプリケーション</h3>
+                <p><code>hajimu_gui</code> パッケージを使ったデスクトップアプリの例です。</p>
+
+                <h4>Hello World GUI</h4>
+                <div class="code-example">
+<pre>取り込む "hajimu_gui" として GUI
+
+変数 アプリ = GUI.アプリ作成("はじめてのGUI", 400, 300)
+
+GUI.描画ループ(アプリ, 関数():
+    GUI.ラベル("こんにちは、世界！")
+    もし GUI.ボタン("押してね") なら
+        GUI.通知("ボタンが押されました！")
+    終わり
+終わり)
+
+GUI.アプリ終了(アプリ)</pre>
+                </div>
+
+                <h4>カウンターアプリ</h4>
+                <div class="code-example">
+<pre>取り込む "hajimu_gui" として GUI
+
+変数 アプリ = GUI.アプリ作成("カウンター", 300, 200)
+変数 回数 = 0
+
+GUI.描画ループ(アプリ, 関数():
+    GUI.見出し("カウント: " + 回数)
+    GUI.横並び開始()
+        もし GUI.ボタン("+1") なら
+            回数 = 回数 + 1
+        終わり
+        もし GUI.ボタン("リセット") なら
+            回数 = 0
+        終わり
+    GUI.横並び終了()
+終わり)
+
+GUI.アプリ終了(アプリ)</pre>
+                </div>
+
+                <h4>フォーム入力</h4>
+                <div class="code-example">
+<pre>取り込む "hajimu_gui" として GUI
+
+変数 アプリ = GUI.アプリ作成("フォーム", 500, 400)
+変数 名前 = ""
+変数 年齢 = 20
+変数 通知 = 真
+
+GUI.描画ループ(アプリ, 関数():
+    GUI.パネル開始("ユーザー情報")
+        名前 = GUI.テキスト入力("名前", 名前)
+        年齢 = GUI.数値入力("年齢", 年齢, 0, 120, 1)
+        通知 = GUI.チェックボックス("通知を受け取る", 通知)
+    GUI.パネル終了()
+
+    もし GUI.ボタン("送信") なら
+        GUI.メッセージダイアログ("確認",
+            名前 + "さん（" + 年齢 + "歳）を登録しました")
+    終わり
+終わり)
+
+GUI.アプリ終了(アプリ)</pre>
+                </div>
+                <p><a href="gui.html">→ GUI 開発の詳細を見る</a></p>
             </section>
         </div>
     </main>
