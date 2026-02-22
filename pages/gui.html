@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GUI 開発 - はじむ</title>
-    <meta name="description" content="はじむ言語で日本語 GUI アプリケーションを開発。1,074の組み込み関数で、ウィンドウ、ボタン、テーブル、チャート、3D描画まで対応。外部ライブラリ不要。">
+    <meta name="description" content="はじむ言語で日本語 GUI アプリケーションを開発。宣言的UI・ホットリロード・DevTools を含む 1,101 の組み込み関数で、ウィンドウ、ボタン、テーブル、チャート、3D描画まで対応。外部ライブラリ不要。">
     <link rel="stylesheet" href="../assets/css/style.css">
     <noscript>
         <style>body { opacity: 1 !important; }</style>
@@ -46,8 +46,8 @@
             <div class="features-grid" style="margin-top: 2rem;">
                 <div class="feature-card">
                     <div class="feature-icon">🖼️</div>
-                    <h3>1,074 関数</h3>
-                    <p>ウィジェット、描画、アニメーション、ファイル操作など網羅的な機能</p>
+                    <h3>1,101 関数</h3>
+                    <p>ウィジェット、宣言的UI、フレームスケジューラ、ホットリロード、DevTools など網羅的な機能</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🚀</div>
@@ -267,8 +267,8 @@ GUI.アプリ終了(アプリ)</pre>
 
             <!-- 全機能一覧 -->
             <section>
-                <h3>Phase 1〜130 — 機能の全体像</h3>
-                <p>hajimu_gui は 130 フェーズにわたって段階的に開発されました。主な機能カテゴリ：</p>
+                <h3>Phase 1〜134 — 機能の全体像</h3>
+                <p>hajimu_gui は 134 フェーズにわたって段階的に開発されました。主な機能カテゴリ：</p>
                 <table>
                     <thead>
                         <tr><th>カテゴリ</th><th>Phase</th><th>機能例</th></tr>
@@ -292,7 +292,11 @@ GUI.アプリ終了(アプリ)</pre>
                         <tr><td>テスト</td><td>90〜93</td><td>UIテスト、スクリーンショット比較</td></tr>
                         <tr><td>マテリアル</td><td>100〜103</td><td>マテリアルデザインウィジェット</td></tr>
                         <tr><td>Cupertino</td><td>110〜113</td><td>iOS風デザインウィジェット</td></tr>
-                        <tr><td>最新</td><td>121〜130</td><td>カスタムペインター、Sliver、Hero、セマンティクス</td></tr>
+                        <tr><td>最新 (Phase 121–130)</td><td>121〜130</td><td>カスタムペインター、Sliver、Hero、セマンティクス</td></tr>
+                        <tr><td>宣言的UI / 仮想ノードツリー</td><td>131</td><td>VUI.開始 / VUI.ボックス / VUI.ボタン、Flexboxレイアウト、差分レンダリング</td></tr>
+                        <tr><td>フレームスケジューラ</td><td>132</td><td>VSync / FPS制御 / 描画コールキュー / アダプティブスロットリング</td></tr>
+                        <tr><td>ホットリロード</td><td>133</td><td>stat mtime ポーリング、最大32ブァイル監視、UIステート保全</td></tr>
+                        <tr><td>DevTools オーバーレイ</td><td>134</td><td>FPSグラフ / ウィジェットインスペクタ / ログコンソール / パフォーマンス表示</td></tr>
                     </tbody>
                 </table>
             </section>
@@ -310,13 +314,13 @@ GUI.アプリ終了(アプリ)</pre>
                     <div class="feature-card">
                         <div class="feature-icon">📚</div>
                         <h3>API リファレンス</h3>
-                        <p>全 1,074 関数の完全なリファレンスドキュメント。</p>
+                        <p>全 1,101 関数の完全なリファレンスドキュメント。</p>
                         <p><a href="https://github.com/ReoShiozawa/hajimu_gui/blob/main/docs/REFERENCE.md" target="_blank">REFERENCE.md を読む →</a></p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">🗺️</div>
                         <h3>ロードマップ</h3>
-                        <p>Phase 1〜130 の全機能一覧と開発計画。</p>
+                        <p>Phase 1〜134 の全機能一覧と開発計画。</p>
                         <p><a href="https://github.com/ReoShiozawa/hajimu_gui/blob/main/docs/ROADMAP.md" target="_blank">ROADMAP.md を読む →</a></p>
                     </div>
                     <div class="feature-card">
