@@ -69,13 +69,25 @@
             <!-- インストール -->
             <section style="margin-top: 3rem;">
                 <h3>インストール</h3>
+
+                <h4>パッケージマネージャ（推奨）</h4>
+                <p>はじむ内蔵のパッケージマネージャを使うと、コンパイル不要で一行でインストールできます。</p>
+                <div class="code-example">
+<pre>hajimu パッケージ 追加 ReoShiozawa/hajimu_gui</pre>
+                </div>
+                <p>既存プロジェクトの依存関係を一括インストールする場合:</p>
+                <div class="code-example">
+<pre>hajimu パッケージ インストール</pre>
+                </div>
+
+                <h4>ソースからビルド</h4>
+                <p>手動でビルドする場合。外部ライブラリは不要です。</p>
                 <div class="code-example">
 <pre>git clone https://github.com/ReoShiozawa/hajimu_gui.git
 cd hajimu_gui
 make
 make install</pre>
                 </div>
-                <p>外部ライブラリのインストールは不要です。<code>make</code> だけでビルドできます。</p>
             </section>
 
             <!-- Hello World -->

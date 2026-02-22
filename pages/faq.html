@@ -74,20 +74,21 @@
 
             <div class="faq-item">
                 <h3>Q: インストール方法は？</h3>
-                <p><strong>A:</strong></p>
+                <p><strong>A:</strong> Homebrew を使う方法が最も簡単です（macOS / Linux）。</p>
                 <div class="code-example">
-<pre># GitHubからクローン
-git clone https://github.com/ReoShiozawa/hajimu.git
-cd jp
-
-# ビルド
+<pre>brew tap ReoShiozawa/hajimu
+brew install hajimu</pre>
+                </div>
+                <p>ソースからビルドする場合:</p>
+                <div class="code-example">
+<pre>git clone https://github.com/ReoShiozawa/hajimu.git
+cd hajimu
 make
-
-# インストール（オプション）
-sudo make install
-
-# 実行
-./nihongo examples/hello.jp</pre>
+sudo make install</pre>
+                </div>
+                <p>インストール後の動作確認:</p>
+                <div class="code-example">
+<pre>hajimu --version</pre>
                 </div>
             </div>
 
@@ -242,13 +243,25 @@ x = [1, 2, 3]   // 配列に変更可能</pre>
 
             <div class="faq-item">
                 <h3>Q: 外部ライブラリやパッケージマネージャはありますか？</h3>
-                <p><strong>A:</strong> 現在はモジュールシステムがあり、<code>取り込む</code>キーワードで他のファイルを読み込めます。パッケージマネージャは将来的な拡張として検討中です。</p>
+                <p><strong>A:</strong> はじむには内蔵のパッケージマネージャがあります。GitHub 上のパッケージを一行でインストールできます。</p>
                 <div class="code-example">
-<pre>// lib/math_utils.jp を読み込む
-取り込む "lib/math_utils.jp"
+<pre># プロジェクトを初期化
+hajimu パッケージ 初期化
 
-// math_utils.jp 内の関数を使用
-変数 結果 = 計算(10, 20)</pre>
+# パッケージを追加（例: GUI パッケージ）
+hajimu パッケージ 追加 ReoShiozawa/hajimu_gui
+
+# インストール済みパッケージを一覧表示
+hajimu パッケージ 一覧
+
+# hajimu.json の依存パッケージを一括インストール
+hajimu パッケージ インストール</pre>
+                </div>
+                <p>インストールしたパッケージは <code>取り込む</code> でインポートできます:</p>
+                <div class="code-example">
+<pre>取り込む "hajimu_gui" として GUI
+
+変数 アプリ = GUI.アプリ作成("マイアプリ", 800, 600)</pre>
                 </div>
             </div>
 
@@ -302,16 +315,12 @@ x = [1, 2, 3]   // 配列に変更可能</pre>
                 <h3>Q: 今後追加予定の機能は？</h3>
                 <p><strong>A:</strong> 以下を検討しています：</p>
                 <ul>
-                    <li>パッケージマネージャ（標準ライブラリの拡張）</li>
-                    <li>IDEプラグイン（VS Code、IntelliJ）</li>
                     <li>デバッガとプロファイラ</li>
-                    <li>テストフレームワーク</li>
                     <li>並列処理のサポート強化</li>
                     <li>ネイティブバイナリコンパイラ（JIT/AOT）</li>
-                    <li>Webフレームワーク</li>
                     <li>データベースライブラリ</li>
-                    <li>GUIライブラリ</li>
                 </ul>
+                <p><strong>リリース済み:</strong> パッケージマネージャ、VS Code 拡張機能、GUI ライブラリ、Webフレームワーク、テストフレームワークは既にリリース済みです。</p>
             </div>
 
             <div class="faq-item">
