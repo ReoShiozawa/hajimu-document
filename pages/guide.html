@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>始めるガイド - はじむ</title>
+    <title><span class="ja">始めるガイド</span> - はじむ / Get Started - Hajimu</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <noscript>
         <style>body { opacity: 1 !important; }</style>
@@ -22,29 +22,31 @@
                 <span></span>
             </button>
             <nav>
-                <a href="../index.html">ホーム</a>
-                <a href="guide.html" class="active">始める</a>
-                <a href="reference.html">リファレンス</a>
-                <a href="examples.html">例</a>
+                <a href="../index.html"><span class="ja">ホーム</span><span class="en">Home</span></a>
+                <a href="guide.html" class="active"><span class="ja">始める</span><span class="en">Get Started</span></a>
+                <a href="reference.html"><span class="ja">リファレンス</span><span class="en">Reference</span></a>
+                <a href="examples.html"><span class="ja">例</span><span class="en">Examples</span></a>
                 <a href="gui.html">GUI</a>
-                <a href="plugins.html">プラグイン開発</a>
+                <a href="packages.html"><span class="ja">パッケージ</span><span class="en">Packages</span></a>
+                <a href="plugins.html"><span class="ja">プラグイン開発</span><span class="en">Plugin Dev</span></a>
                 <a href="faq.html">FAQ</a>
-                <a href="contributing.html">貢献</a>
+                <a href="contributing.html"><span class="ja">貢献</span><span class="en">Contribute</span></a>
                 <a href="https://github.com/ReoShiozawa/hajimu" target="_blank">GitHub</a>
+                <button id="lang-toggle" class="lang-toggle">🇺🇸 English</button>
             </nav>
         </div>
     </header>
 
     <main>
         <div class="page-section">
-            <h2>始めるガイド</h2>
+            <h2><span class="ja">始めるガイド</span><span class="en">Getting Started</span></h2>
             
             <!-- インストール -->
             <section>
-                <h3>1. インストール</h3>
+                <h3><span class="ja">1. インストール</span><span class="en">1. Installation</span></h3>
                 
                 <h4>macOS / Linux</h4>
-                <p>GitHubからソースコードをクローンして、ビルドしてください。</p>
+                <p><span class="ja">GitHubからソースコードをクローンして、ビルドしてください。</span><span class="en">Clone the repository from GitHub and build it.</span></p>
                 <div class="code-example">
 <pre>$ git clone https://github.com/ReoShiozawa/hajimu.git
 $ cd jp
@@ -52,42 +54,42 @@ $ make
 $ make install</pre>
                 </div>
 
-                <h4>要件</h4>
+                <h4><span class="ja">要件</span><span class="en">Requirements</span></h4>
                 <ul>
                     <li>GCC 9.0+ または Clang 10.0+</li>
                     <li>Make</li>
                     <li>標準ライブラリ（libcurl, libpthread）</li>
                 </ul>
 
-                <h4>検証</h4>
-                <p>インストール後、以下のコマンドで動作確認してください。</p>
+                <h4><span class="ja">検証</span><span class="en">Verify Installation</span></h4>
+                <p><span class="ja">インストール後、以下のコマンドで動作確認してください。</span><span class="en">After installation, run the following command to verify.</span></p>
                 <div class="code-example">
 <pre>$ hajimu --version
-hajimu 0.1.0</pre>
+hajimu 1.3.1</pre>
                 </div>
             </section>
 
             <!-- はじめてのプログラム -->
             <section>
-                <h3>2. はじめてのプログラム</h3>
+                <h3><span class="ja">2. はじめてのプログラム</span><span class="en">2. Your First Program</span></h3>
 
-                <p>テキストエディタで <code>hello.jp</code> というファイルを作成し、以下のコードを入力してください。</p>
+                <p><span class="ja">テキストエディタで <code>hello.jp</code> というファイルを作成し、以下のコードを入力してください。</span><span class="en">Create a file called <code>hello.jp</code> in your text editor and enter the following code.</span></p>
                 <div class="code-example">
 <pre>表示("こんにちは、世界！")</pre>
                 </div>
 
-                <p>次に、コマンドラインで以下を実行します。</p>
+                <p><span class="ja">次に、コマンドラインで以下を実行します。</span><span class="en">Then run the following command in your terminal.</span></p>
                 <div class="code-example">
 <pre>$ nihongo hello.jp
 こんにちは、世界！</pre>
                 </div>
 
-                <p>おめでとうございます！最初のプログラムが完成しました。</p>
+                <p><span class="ja">おめでとうございます！最初のプログラムが完成しました。</span><span class="en">Congratulations! Your first program is complete.</span></p>
             </section>
 
             <!-- 基本概念 -->
             <section>
-                <h3>3. 基本概念</h3>
+                <h3><span class="ja">3. 基本概念</span><span class="en">3. Basic Concepts</span></h3>
 
                 <h4>変数</h4>
                 <p>変数は値を保存する箱のようなものです。<code>変数</code>キーワードで宣言します。</p>
@@ -143,7 +145,7 @@ hajimu 0.1.0</pre>
 
             <!-- 制御構造 -->
             <section>
-                <h3>4. 制御構造</h3>
+                <h3><span class="ja">4. 制御構造</span><span class="en">4. Control Flow</span></h3>
 
                 <h4>条件分岐</h4>
                 <p>コードを条件に応じて分岐させることができます。</p>
@@ -184,7 +186,7 @@ hajimu 0.1.0</pre>
 
             <!-- 関数 -->
             <section>
-                <h3>5. 関数</h3>
+                <h3><span class="ja">5. 関数</span><span class="en">5. Functions</span></h3>
 
                 <p>コードを再利用可能な関数として定義できます。</p>
                 <div class="code-example">
@@ -209,7 +211,7 @@ hajimu 0.1.0</pre>
 
             <!-- 配列とリスト内包表記 -->
             <section>
-                <h3>6. 配列とリスト内包表記</h3>
+                <h3><span class="ja">6. 配列とリスト内包表記</span><span class="en">6. Arrays &amp; List Comprehensions</span></h3>
 
                 <h4>配列操作</h4>
                 <div class="code-example">
@@ -249,7 +251,7 @@ hajimu 0.1.0</pre>
 
             <!-- クラス -->
             <section>
-                <h3>7. クラスとオブジェクト</h3>
+                <h3><span class="ja">7. クラスとオブジェクト</span><span class="en">7. Classes &amp; Objects</span></h3>
 
                 <p>オブジェクト指向プログラミングでコードを整理できます。</p>
                 <div class="code-example">
@@ -279,7 +281,7 @@ hajimu 0.1.0</pre>
 
             <!-- 次のステップ -->
             <section>
-                <h3>次のステップ</h3>
+                <h3><span class="ja">次のステップ</span><span class="en">Next Steps</span></h3>
                 <ul>
                     <li><a href="reference.html">リファレンスマニュアルで詳しく学ぶ</a></li>
                     <li><a href="examples.html">さらに多くのコード例を見る</a></li>

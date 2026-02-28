@@ -1,5 +1,30 @@
+// ─── 言語設定をページ描画前に適用（フラッシュ防止）───
+(function() {
+    if (localStorage.getItem('hajimu-lang') === 'en') {
+        document.documentElement.classList.add('lang-en-early');
+    }
+})();
+
 // ナビゲーション
 document.addEventListener('DOMContentLoaded', function() {
+    // ─── 言語設定を body に適用 ───
+    const savedLang = localStorage.getItem('hajimu-lang') || 'ja';
+    if (savedLang === 'en') {
+        document.body.classList.add('lang-en');
+    }
+    document.documentElement.classList.remove('lang-en-early');
+
+    // 言語トグルボタン
+    const langToggle = document.getElementById('lang-toggle');
+    if (langToggle) {
+        langToggle.textContent = savedLang === 'en' ? '🇯🇵 日本語' : '🇺🇸 English';
+        langToggle.addEventListener('click', function() {
+            const isEn = document.body.classList.toggle('lang-en');
+            localStorage.setItem('hajimu-lang', isEn ? 'en' : 'ja');
+            langToggle.textContent = isEn ? '🇯🇵 日本語' : '🇺🇸 English';
+        });
+    }
+
     // ハンバーガーメニュー
     const hamburger = document.querySelector('.hamburger');
     const nav = document.querySelector('nav');

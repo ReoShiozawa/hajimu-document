@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>パッケージ一覧 - はじむ / Packages - Hajimu</title>
+    <meta name="description" content="はじむ言語の公式パッケージ一覧。GUI、ゲームエンジン、Web、Discord など多彩な拡張パッケージを日本語で利用できます。">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <noscript>
+        <style>body { opacity: 1 !important; }</style>
+    </noscript>
+</head>
+<body class="page-loading">
+    <header>
+        <div class="header-content">
+            <a href="../index.html" class="logo">
+                <span class="logo-icon">始</span>
+                <span>はじむ</span>
+            </a>
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav>
+                <a href="../index.html"><span class="ja">ホーム</span><span class="en">Home</span></a>
+                <a href="guide.html"><span class="ja">始める</span><span class="en">Get Started</span></a>
+                <a href="reference.html"><span class="ja">リファレンス</span><span class="en">Reference</span></a>
+                <a href="examples.html"><span class="ja">例</span><span class="en">Examples</span></a>
+                <a href="gui.html">GUI</a>
+                <a href="packages.html" class="active"><span class="ja">パッケージ</span><span class="en">Packages</span></a>
+                <a href="plugins.html"><span class="ja">プラグイン開発</span><span class="en">Plugin Dev</span></a>
+                <a href="faq.html">FAQ</a>
+                <a href="contributing.html"><span class="ja">貢献</span><span class="en">Contribute</span></a>
+                <a href="https://github.com/ReoShiozawa/hajimu" target="_blank">GitHub</a>
+                <button id="lang-toggle" class="lang-toggle">🇺🇸 English</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-section">
+            <h2>
+                <span class="ja">公式パッケージ一覧</span>
+                <span class="en">Official Packages</span>
+            </h2>
+            <p>
+                <span class="ja">はじむの豊富な公式パッケージを使えば、GUI・ゲーム・Web・音声・物理演算など幅広い分野のアプリを日本語で開発できます。<br>
+                パッケージはすべて <code>hajimu パッケージ 追加 &lt;リポジトリ&gt;</code> または <a href="https://github.com/ReoShiozawa" target="_blank">GitHub</a> から入手できます。</span>
+                <span class="en">Hajimu's official packages enable you to build GUI apps, games, web servers, audio tools and more — all in Japanese.<br>
+                Install any package via <code>hajimu パッケージ 追加 &lt;repo&gt;</code> or grab them from <a href="https://github.com/ReoShiozawa" target="_blank">GitHub</a>.</span>
+            </p>
+
+            <!-- インストール方法 -->
+            <section>
+                <h3>
+                    <span class="ja">インストール方法</span>
+                    <span class="en">How to Install</span>
+                </h3>
+                <p>
+                    <span class="ja">パッケージマネージャを使って簡単にインストールできます。</span>
+                    <span class="en">Use the built-in package manager to install packages with a single command.</span>
+                </p>
+                <div class="code-example">
+<pre><span class="ja"># 個別インストール</span><span class="en"># Install a single package</span>
+hajimu パッケージ 追加 ReoShiozawa/hajimu_gui
+
+<span class="ja"># hajimu.json に記載された依存関係を一括インストール</span><span class="en"># Install all dependencies listed in hajimu.json</span>
+hajimu パッケージ インストール
+
+<span class="ja"># パッケージ一覧を確認</span><span class="en"># List installed packages</span>
+hajimu パッケージ 一覧</pre>
+                </div>
+            </section>
+
+            <!-- パッケージ一覧 -->
+            <section>
+                <h3>
+                    <span class="ja">パッケージカタログ</span>
+                    <span class="en">Package Catalog</span>
+                </h3>
+
+                <div class="pkg-grid">
+
+                    <!-- hajimu_gui -->
+                    <div class="pkg-card">
+                        <div class="pkg-icon">🖼️</div>
+                        <span class="pkg-badge">GUI</span>
+                        <h3>hajimu_gui</h3>
+                        <p>
+                            <span class="ja">日本語 GUI フレームワーク。1,101 の日本語関数でデスクトップアプリを開発。ウィジェット、グラフ、3D 描画、ホットリロード、DevTools を搭載。外部ライブラリ不要。</span>
+                            <span class="en">Japanese-native GUI framework with 1,101 functions. Build desktop apps with widgets, charts, 3D rendering, hot-reload and DevTools. No external libraries required.</span>
+                        </p>
+                        <div class="code-example" style="font-size:0.8rem;margin-top:1rem">
+<pre>取り込む "hajimu_gui" として GUI
+変数 アプリ = GUI.アプリ作成("Hello", 400, 300)
+GUI.描画ループ(アプリ, 関数():
+    GUI.ラベル("こんにちは！")
+終わり)
+GUI.アプリ終了(アプリ)</pre>
+                        </div>
+                        <p style="margin-top:0.8rem"><a href="gui.html"><span class="ja">詳細ページ →</span><span class="en">Full docs →</span></a></p>
+                        <p><a href="https://github.com/ReoShiozawa/hajimu_gui" target="_blank">GitHub</a></p>
+                    </div>
+
+                    <!-- jp-web -->
+                    <div class="pkg-card">
+                        <div class="pkg-icon">🌐</div>
+                        <span class="pkg-badge">Web</span>
+                        <h3>jp-web</h3>
+                        <p>
+                            <span class="ja">HTTP サーバー & クライアントフレームワーク。API サーバー、WebSocket、静的ファイル配信、ルーティングを日本語で記述できます。</span>
+                            <span class="en">HTTP server &amp; client framework. Build API servers, WebSockets and static file servers entirely in Japanese.</span>
+                        </p>
+                        <div class="code-example" style="font-size:0.8rem;margin-top:1rem">
+<pre>取り込む "hajimu_web" として WEB
+変数 サーバー = WEB.サーバー作成(8080)
+WEB.ルート追加(サーバー, "/", 関数(要求):
+    戻す WEB.応答("こんにちは！", 200)
+終わり)
+WEB.開始(サーバー)</pre>
+                        </div>
+                        <p style="margin-top:0.8rem"><a href="https://github.com/ReoShiozawa/jp-web" target="_blank">GitHub</a></p>
+                    </div>
+
+                    <!-- jp-discord -->
+                    <div class="pkg-card">
+                        <div class="pkg-icon">💬</div>
+                        <span class="pkg-badge">Discord</span>
+                        <h3>jp-discord</h3>
+                        <p>
+                            <span class="ja">Discord ボットフレームワーク。イベントハンドリング、スラッシュコマンド、メッセージ送受信、Embed 作成などをすべて日本語で実装できます。</span>
+                            <span class="en">Discord bot framework. Handle events, slash commands, messages and embeds — all written in Japanese.</span>
+                        </p>
+                        <div class="code-example" style="font-size:0.8rem;margin-top:1rem">
+<pre>取り込む "hajimu_discord" として DC
+変数 ボット = DC.ボット作成(トークン)
+DC.イベント(ボット, "メッセージ", 関数(msg):
+    もし msg["内容"] == "!こんにちは" なら
+        DC.返信(msg, "やあ！👋")
+    終わり
+終わり)
+DC.起動(ボット)</pre>
+                        </div>
+                        <p style="margin-top:0.8rem"><a href="https://github.com/ReoShiozawa/jp-discord" target="_blank">GitHub</a></p>
+                    </div>
+
+                    <!-- jp-engine_render -->
+                    <div class="pkg-card">
+                        <div class="pkg-icon">🎨</div>
+                        <span class="pkg-badge"><span class="ja">ゲームエンジン</span><span class="en">Game Engine</span></span>
+                        <h3>jp-engine_render</h3>
+                        <p>
+                            <span class="ja">OpenGL ベースのレンダリングエンジン。シェーダー管理、テクスチャ、フレームバッファ、カメラ、ライティングなど低レベルのグラフィクス処理を日本語 API で操作できます。</span>
+                            <span class="en">OpenGL-based rendering engine. Manage shaders, textures, framebuffers, cameras and lighting through a Japanese API.</span>
+                        </p>
+                        <div class="code-example" style="font-size:0.8rem;margin-top:1rem">
+<pre>取り込む "jp_engine_render" として RND
+RND.初期化(800, 600, "タイトル")
+RND.背景色設定(0.1, 0.1, 0.1, 1.0)
+RND.描画ループ(関数():
+    RND.四角描画(0.0, 0.0, 0.5, 0.5)
+終わり)</pre>
+                        </div>
+                        <p style="margin-top:0.8rem"><a href="https://github.com/ReoShiozawa/jp-engine_render" target="_blank">GitHub</a></p>
+                    </div>
+
+                    <!-- jp-engine_2d -->
+                    <div class="pkg-card">
+                        <div class="pkg-icon">🕹️</div>
+                        <span class="pkg-badge"><span class="ja">ゲームエンジン</span><span class="en">Game Engine</span></span>
+                        <h3>jp-engine_2d</h3>
+                        <p>
+                            <span class="ja">2D ゲームエンジン。スプライト、タイルマップ、衝突判定、アニメーション、カメラ追従など 2D ゲーム開発に必要な機能を揃えています。</span>
+                            <span class="en">2D game engine with sprites, tilemaps, collision detection, animations and camera follow — everything you need for 2D game development.</span>
+                        </p>
+                        <div class="code-example" style="font-size:0.8rem;margin-top:1rem">
+<pre>取り込む "jp_engine_2d" として E2D
+変数 シーン = E2D.シーン作成(800, 600)
+変数 自機 = E2D.スプライト作成("player.png", 100, 100)
+E2D.更新ループ(シーン, 関数(dt):
+    E2D.スプライト移動(自機, 1.0 * dt, 0)
+終わり)</pre>
+                        </div>
+                        <p style="margin-top:0.8rem"><a href="https://github.com/ReoShiozawa/jp-engine_2d" target="_blank">GitHub</a></p>
+                    </div>
+
+                    <!-- jp-engine_3d -->
+                    <div class="pkg-card">
+                        <div class="pkg-icon">🎮</div>
+                        <span class="pkg-badge"><span class="ja">ゲームエンジン</span><span class="en">Game Engine</span></span>
+                        <h3>jp-engine_3d</h3>
+                        <p>
+                            <span class="ja">3D ゲームエンジン。メッシュローディング、スカイボックス、ライティング、シャドウマッピング、FPS カメラなど本格的な 3D シーンの構築が可能です。</span>
+                            <span class="en">3D game engine featuring mesh loading, skybox, lighting, shadow mapping and FPS camera for building full 3D scenes.</span>
+                        </p>
+                        <div class="code-example" style="font-size:0.8rem;margin-top:1rem">
+<pre>取り込む "jp_engine_3d" として E3D
+変数 シーン = E3D.シーン作成(1280, 720, "3Dデモ")
+変数 モデル = E3D.モデル読み込み("cube.obj")
+E3D.ライト追加(シーン, [1,1,1], [1.0,1.0,1.0])
+E3D.描画ループ(シーン, 関数(dt):
+    E3D.モデル回転(モデル, dt, [0,1,0])
+終わり)</pre>
+                        </div>
+                        <p style="margin-top:0.8rem"><a href="https://github.com/ReoShiozawa/jp-engine_3d" target="_blank">GitHub</a></p>
+                    </div>
+
+                    <!-- jp-engine_audio -->
+                    <div class="pkg-card">
+                        <div class="pkg-icon">🔊</div>
+                        <span class="pkg-badge"><span class="ja">オーディオ</span><span class="en">Audio</span></span>
+                        <h3>jp-engine_audio</h3>
+                        <p>
+                            <span class="ja">オーディオエンジン。BGM・SE 再生、音量・ピッチ制御、3D 空間音声、ストリーミング再生に対応。WAV / OGG / MP3 形式をサポート。</span>
+                            <span class="en">Audio engine supporting BGM/SE playback, volume &amp; pitch control, 3D positional audio and streaming. WAV / OGG / MP3 formats.</span>
+                        </p>
+                        <div class="code-example" style="font-size:0.8rem;margin-top:1rem">
+<pre>取り込む "jp_engine_audio" として AUD
+AUD.初期化()
+変数 BGM = AUD.読み込み("bgm.ogg")
+AUD.ループ再生(BGM, 真)
+AUD.音量設定(BGM, 0.8)
+AUD.再生(BGM)</pre>
+                        </div>
+                        <p style="margin-top:0.8rem"><a href="https://github.com/ReoShiozawa/jp-engine_audio" target="_blank">GitHub</a></p>
+                    </div>
+
+                    <!-- jp-engine_ui -->
+                    <div class="pkg-card">
+                        <div class="pkg-icon">🧩</div>
+                        <span class="pkg-badge">UI</span>
+                        <h3>jp-engine_ui</h3>
+                        <p>
+                            <span class="ja">ゲーム内 UI フレームワーク。HP バー、ミニマップ、ダイアログボックス、インベントリ画面など、ゲームに必要な UI コンポーネントを提供します。</span>
+                            <span class="en">In-game UI framework providing HP bars, minimaps, dialog boxes and inventory screens for game UIs.</span>
+                        </p>
+                        <div class="code-example" style="font-size:0.8rem;margin-top:1rem">
+<pre>取り込む "jp_engine_ui" として UI
+変数 HPバー = UI.体力バー作成(100, 100, 200, 20)
+UI.体力バー更新(HPバー, 75, 100)  // 75/100
+変数 ダイアログ = UI.ダイアログ作成("話しかけましたか？")
+UI.描画(HPバー)
+UI.描画(ダイアログ)</pre>
+                        </div>
+                        <p style="margin-top:0.8rem"><a href="https://github.com/ReoShiozawa/jp-engine_ui" target="_blank">GitHub</a></p>
+                    </div>
+
+                    <!-- jp-engine_rpg -->
+                    <div class="pkg-card">
+                        <div class="pkg-icon">⚔️</div>
+                        <span class="pkg-badge">RPG</span>
+                        <h3>jp-engine_rpg</h3>
+                        <p>
+                            <span class="ja">RPG ゲームフレームワーク。キャラクター管理、イベントシステム、ステータス・スキル・アイテムシステム、ターン制バトル、ダイアログエンジンを内蔵。</span>
+                            <span class="en">RPG game framework with character management, event system, stats/skills/items, turn-based battle and an integrated dialog engine.</span>
+                        </p>
+                        <div class="code-example" style="font-size:0.8rem;margin-top:1rem">
+<pre>取り込む "jp_engine_rpg" として RPG
+変数 主人公 = RPG.キャラクター作成("勇者", {
+    "HP": 100, "MP": 50, "攻撃": 20
+})
+変数 スライム = RPG.敵作成("スライム", {"HP": 30, "攻撃": 8})
+RPG.バトル開始(主人公, スライム)</pre>
+                        </div>
+                        <p style="margin-top:0.8rem"><a href="https://github.com/ReoShiozawa/jp-engine_rpg" target="_blank">GitHub</a></p>
+                    </div>
+
+                    <!-- jp-engine_physics -->
+                    <div class="pkg-card">
+                        <div class="pkg-icon">⚙️</div>
+                        <span class="pkg-badge"><span class="ja">物理演算</span><span class="en">Physics</span></span>
+                        <h3>jp-engine_physics</h3>
+                        <p>
+                            <span class="ja">物理演算エンジン。剛体シミュレーション、衝突検出（AABB・円・ポリゴン）、重力・摩擦・反発、ジョイント・コンストレイントをサポート。</span>
+                            <span class="en">Physics engine with rigid body simulation, AABB/circle/polygon collision, gravity, friction, restitution and joints/constraints.</span>
+                        </p>
+                        <div class="code-example" style="font-size:0.8rem;margin-top:1rem">
+<pre>取り込む "jp_engine_physics" として PHY
+変数 ワールド = PHY.ワールド作成(0, -9.8)
+変数 箱 = PHY.剛体作成(ワールド, 100, 50, 10, 10)
+PHY.重力設定(ワールド, 0, -9.8)
+PHY.更新(ワールド, 0.016)
+表示(PHY.位置取得(箱))</pre>
+                        </div>
+                        <p style="margin-top:0.8rem"><a href="https://github.com/ReoShiozawa/jp-engine_physics" target="_blank">GitHub</a></p>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- hajimu.json -->
+            <section>
+                <h3>
+                    <span class="ja">プロジェクト設定ファイル（hajimu.json）</span>
+                    <span class="en">Project Configuration (hajimu.json)</span>
+                </h3>
+                <p>
+                    <span class="ja">プロジェクトルートに <code>hajimu.json</code> を置くと、依存パッケージを管理できます。</span>
+                    <span class="en">Place <code>hajimu.json</code> at the project root to declare and manage package dependencies.</span>
+                </p>
+                <div class="code-example">
+<pre>{
+  "名前": "私のゲーム",
+  "バージョン": "1.0.0",
+  "説明": "はじむで作ったゲーム",
+  "依存関係": {
+    "hajimu_gui":          "ReoShiozawa/hajimu_gui",
+    "jp_engine_2d":        "ReoShiozawa/jp-engine_2d",
+    "jp_engine_audio":     "ReoShiozawa/jp-engine_audio",
+    "jp_engine_physics":   "ReoShiozawa/jp-engine_physics"
+  }
+}</pre>
+                </div>
+                <div class="code-example">
+<pre><span class="ja"># 依存関係を一括インストール</span><span class="en"># Install all dependencies</span>
+hajimu パッケージ インストール</pre>
+                </div>
+            </section>
+
+            <!-- 対応プラットフォーム -->
+            <section>
+                <h3>
+                    <span class="ja">対応プラットフォーム</span>
+                    <span class="en">Platform Support</span>
+                </h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th><span class="ja">パッケージ</span><span class="en">Package</span></th>
+                            <th>macOS</th>
+                            <th>Linux</th>
+                            <th>Windows</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>hajimu_gui</td><td>✅</td><td>✅</td><td>✅</td></tr>
+                        <tr><td>jp-web</td><td>✅</td><td>✅</td><td>✅</td></tr>
+                        <tr><td>jp-discord</td><td>✅</td><td>✅</td><td>✅</td></tr>
+                        <tr><td>jp-engine_render</td><td>✅</td><td>✅</td><td>✅</td></tr>
+                        <tr><td>jp-engine_2d</td><td>✅</td><td>✅</td><td>✅</td></tr>
+                        <tr><td>jp-engine_3d</td><td>✅</td><td>✅</td><td>✅</td></tr>
+                        <tr><td>jp-engine_audio</td><td>✅</td><td>✅</td><td>✅</td></tr>
+                        <tr><td>jp-engine_ui</td><td>✅</td><td>✅</td><td>✅</td></tr>
+                        <tr><td>jp-engine_rpg</td><td>✅</td><td>✅</td><td>✅</td></tr>
+                        <tr><td>jp-engine_physics</td><td>✅</td><td>✅</td><td>✅</td></tr>
+                    </tbody>
+                </table>
+                <p>
+                    <span class="ja">各パッケージはプラットフォームごとに最適化された <code>.hjp</code>（Hajimu Plugin）ファイルとして配布されます。はじむのパッケージマネージャが実行環境を自動検出し、適切なバイナリをインストールします。</span>
+                    <span class="en">Each package is shipped as platform-optimised <code>.hjp</code> (Hajimu Plugin) files. The package manager auto-detects your platform and installs the correct binary.</span>
+                </p>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4><span class="ja">ドキュメント</span><span class="en">Documentation</span></h4>
+                <ul>
+                    <li><a href="guide.html"><span class="ja">始めるガイド</span><span class="en">Get Started</span></a></li>
+                    <li><a href="reference.html"><span class="ja">リファレンス</span><span class="en">Reference</span></a></li>
+                    <li><a href="packages.html"><span class="ja">パッケージ</span><span class="en">Packages</span></a></li>
+                    <li><a href="examples.html"><span class="ja">コード例</span><span class="en">Examples</span></a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4><span class="ja">コミュニティ</span><span class="en">Community</span></h4>
+                <ul>
+                    <li><a href="https://github.com/ReoShiozawa/hajimu" target="_blank">GitHub</a></li>
+                    <li><a href="https://github.com/ReoShiozawa/hajimu/discussions" target="_blank"><span class="ja">ディスカッション</span><span class="en">Discussions</span></a></li>
+                    <li><a href="https://github.com/ReoShiozawa/hajimu/issues" target="_blank"><span class="ja">バグ報告</span><span class="en">Bug Reports</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 <span class="ja">はじむ プロジェクト</span><span class="en">Hajimu Project</span>. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <button id="scrollTop">↑</button>
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>
