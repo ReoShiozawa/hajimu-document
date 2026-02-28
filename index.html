@@ -24,17 +24,17 @@
                 <span></span>
             </button>
             <nav>
-                <a href="index.html"><span class="ja">ホーム</span><span class="en">Home</span></a>
-                <a href="pages/guide.html"><span class="ja">始める</span><span class="en">Get Started</span></a>
-                <a href="pages/reference.html"><span class="ja">リファレンス</span><span class="en">Reference</span></a>
-                <a href="pages/examples.html"><span class="ja">例</span><span class="en">Examples</span></a>
+                <a href="index.html" data-i18n="nav.home">ホーム</a>
+                <a href="pages/guide.html" data-i18n="nav.guide">始める</a>
+                <a href="pages/reference.html" data-i18n="nav.reference">リファレンス</a>
+                <a href="pages/examples.html" data-i18n="nav.examples">例</a>
                 <a href="pages/gui.html">GUI</a>
-                <a href="pages/packages.html"><span class="ja">パッケージ</span><span class="en">Packages</span></a>
-                <a href="pages/plugins.html"><span class="ja">プラグイン開発</span><span class="en">Plugin Dev</span></a>
-                <a href="pages/faq.html">FAQ</a>
-                <a href="pages/contributing.html"><span class="ja">貢献</span><span class="en">Contribute</span></a>
+                <a href="pages/packages.html" data-i18n="nav.packages">パッケージ</a>
+                <a href="pages/plugins.html" data-i18n="nav.plugins">プラグイン開発</a>
+                <a href="pages/faq.html" data-i18n="nav.faq">FAQ</a>
+                <a href="pages/contributing.html" data-i18n="nav.contribute">貢献</a>
                 <a href="https://github.com/ReoShiozawa/hajimu" target="_blank">GitHub</a>
-                <button id="lang-toggle" class="lang-toggle">🇺🇸 English</button>
+                <button id="lang-toggle" class="lang-toggle" data-i18n="lang.toggle">🇺🇸 English</button>
             </nav>
         </div>
     </header>
@@ -44,28 +44,19 @@
             <!-- ヒーローセクション -->
             <section class="hero">
                 <h1>
-                    <span class="ja">はじむ<br>日本語で書くプログラミング言語</span>
-                    <span class="en">Hajimu<br>A Programming Language Written in Japanese</span>
+                    <span class="i18n-ja">はじむ<br>日本語で書くプログラミング言語</span>
+                    <span class="i18n-en">Hajimu<br>A Programming Language Written in Japanese</span>
                 </h1>
-                <p>
-                    <span class="ja">シンプルで直感的。日本語の自然な表現でコードを書こう。</span>
-                    <span class="en">Simple and intuitive. Write code in natural Japanese.</span>
-                </p>
+                <p data-i18n="index.hero.sub">シンプルで直感的。日本語の自然な表現でコードを書こう。</p>
                 <div class="cta-buttons">
-                    <a href="pages/guide.html" class="btn btn-primary">
-                        <span class="ja">今すぐ始める</span>
-                        <span class="en">Get Started</span>
-                    </a>
-                    <a href="pages/reference.html" class="btn btn-secondary">
-                        <span class="ja">ドキュメントを読む</span>
-                        <span class="en">Read the Docs</span>
-                    </a>
+                    <a href="pages/guide.html" class="btn btn-primary" data-i18n="index.cta.start">今すぐ始める</a>
+                    <a href="pages/reference.html" class="btn btn-secondary" data-i18n="index.cta.docs">ドキュメントを読む</a>
                 </div>
             </section>
 
             <!-- フィーチャー -->
             <section id="features">
-                <h2><span class="ja">特徴</span><span class="en">Features</span></h2>
+                <h2 data-i18n="index.s.features">特徴</h2>
                 <div class="features-grid">
                     <div class="feature-card">
                         <div class="feature-icon">📝</div>
@@ -117,7 +108,7 @@
 
             <!-- クイックスタート -->
             <section>
-                <h2><span class="ja">クイックスタート</span><span class="en">Quick Start</span></h2>
+                <h2 data-i18n="index.s.quickstart">クイックスタート</h2>
                 <h3>Hello World</h3>
                 <div class="code-example">
 <pre>表示("こんにちは、世界！")</pre>
@@ -163,7 +154,7 @@
 
             <!-- システム要件 -->
             <section>
-                <h2><span class="ja">システム要件</span><span class="en">System Requirements</span></h2>
+                <h2 data-i18n="index.s.requirements">システム要件</h2>
                 <table>
                     <thead>
                         <tr>
@@ -193,7 +184,7 @@
             </section>
             <!-- 言語の重要性 -->
             <section>
-                <h2><span class="ja">なぜ日本語でプログラミング？</span><span class="en">Why Program in Japanese?</span></h2>
+                <h2 data-i18n="index.s.why">なぜ日本語でプログラミング？</h2>
                 <div class="importance-grid">
                     <div class="importance-card">
                         <h3>🎓 教育の民主化</h3>
@@ -216,7 +207,7 @@
 
             <!-- 設計思想 -->
             <section>
-                <h2><span class="ja">設計思想</span><span class="en">Design Philosophy</span></h2>
+                <h2 data-i18n="index.s.philosophy">設計思想</h2>
                 <div class="philosophy">
                     <div class="philosophy-item">
                         <h3>📖 読みやすさ優先</h3>
@@ -239,38 +230,35 @@
 
             <!-- 統計 -->
             <section>
-                <h2><span class="ja">プロジェクト統計</span><span class="en">Project Stats</span></h2>
+                <h2 data-i18n="index.s.stats">プロジェクト統計</h2>
                 <div class="features-grid">
                     <div class="feature-card">
                         <div class="feature-icon">📦</div>
                         <h3>143個</h3>
-                        <p><span class="ja">組み込み関数</span><span class="en">Built-in Functions</span></p>
+                        <p data-i18n="index.stat.builtins">組み込み関数</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">✅</div>
                         <h3>156個</h3>
-                        <p><span class="ja">テストケース</span><span class="en">Test Cases</span></p>
+                        <p data-i18n="index.stat.tests">テストケース</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">📄</div>
                         <h3>100%</h3>
-                        <p><span class="ja">ドキュメント完成</span><span class="en">Docs Complete</span></p>
+                        <p data-i18n="index.stat.docs">ドキュメント完成</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">⚠️</div>
                         <h3>0個</h3>
-                        <p><span class="ja">コンパイラ警告</span><span class="en">Compiler Warnings</span></p>
+                        <p data-i18n="index.stat.warnings">コンパイラ警告</p>
                     </div>
                 </div>
             </section>
 
             <!-- コミュニティ -->
             <section>
-                <h2><span class="ja">コミュニティ</span><span class="en">Community</span></h2>
-                <p>
-                    <span class="ja">このプロジェクトはオープンソースで、皆さんのコントリビューションを歓迎します。</span>
-                    <span class="en">This project is open-source and welcomes contributions from everyone.</span>
-                </p>
+                <h2 data-i18n="index.s.community">コミュニティ</h2>
+                <p data-i18n="index.community.body">このプロジェクトはオープンソースで、皆さんのコントリビューションを歓迎します。</p>
                 <div class="features-grid">
                     <div class="feature-card">
                         <div class="feature-icon">🐙</div>
@@ -295,7 +283,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h4><span class="ja">はじむについて</span><span class="en">About Hajimu</span></h4>
+                <h4 data-i18n="footer.about">はじむについて</h4>
                 <ul>
                     <li><a href="index.html#features">特徴</a></li>
                     <li><a href="pages/reference.html">ドキュメント</a></li>
@@ -303,19 +291,19 @@
                 </ul>
             </div>
             <div class="footer-section">
-                <h4><span class="ja">リソース</span><span class="en">Resources</span></h4>
+                <h4 data-i18n="footer.resources">リソース</h4>
                 <ul>
-                    <li><a href="pages/guide.html"><span class="ja">チュートリアル</span><span class="en">Tutorial</span></a></li>
-                    <li><a href="pages/reference.html"><span class="ja">API リファレンス</span><span class="en">API Reference</span></a></li>
-                    <li><a href="pages/packages.html"><span class="ja">パッケージ一覧</span><span class="en">Package Catalog</span></a></li>
-                    <li><a href="pages/plugins.html"><span class="ja">プラグイン開発</span><span class="en">Plugin Dev</span></a></li>
-                    <li><a href="pages/gui.html"><span class="ja">GUI 開発</span><span class="en">GUI Dev</span></a></li>
-                    <li><a href="pages/examples.html"><span class="ja">コード例</span><span class="en">Examples</span></a></li>
-                    <li><a href="pages/faq.html"><span class="ja">よくある質問</span><span class="en">FAQ</span></a></li>
+                    <li><a href="pages/guide.html" data-i18n="footer.tutorial">チュートリアル</a></li>
+                    <li><a href="pages/reference.html" data-i18n="footer.api">API リファレンス</a></li>
+                    <li><a href="pages/packages.html" data-i18n="footer.pkglist">パッケージ一覧</a></li>
+                    <li><a href="pages/plugins.html" data-i18n="footer.plugindev">プラグイン開発</a></li>
+                    <li><a href="pages/gui.html" data-i18n="footer.guidev">GUI 開発</a></li>
+                    <li><a href="pages/examples.html" data-i18n="footer.codeex">コード例</a></li>
+                    <li><a href="pages/faq.html" data-i18n="footer.faqlink">よくある質問</a></li>
                 </ul>
             </div>
             <div class="footer-section">
-                <h4><span class="ja">コミュニティ</span><span class="en">Community</span></h4>
+                <h4 data-i18n="footer.community">コミュニティ</h4>
                 <ul>
                     <li><a href="https://github.com/ReoShiozawa/hajimu" target="_blank">GitHub</a></li>
                     <li><a href="https://github.com/ReoShiozawa/hajimu/discussions" target="_blank">ディスカッション</a></li>
@@ -324,7 +312,7 @@
                 </ul>
             </div>
             <div class="footer-section">
-                <h4><span class="ja">法的</span><span class="en">Legal</span></h4>
+                <h4 data-i18n="footer.legal">法的</h4>
                 <ul>
                     <li><a href="#">ライセンス</a></li>
                     <li><a href="#">プライバシー</a></li>
@@ -333,7 +321,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024-2026 <span class="ja">はじむ プロジェクト</span><span class="en">Hajimu Project</span>. All rights reserved.</p>
+            <p>&copy; 2024-2026 <span data-i18n="footer.copy">はじむ プロジェクト</span>. All rights reserved.</p>
         </div>
     </footer>
 

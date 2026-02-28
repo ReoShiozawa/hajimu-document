@@ -22,42 +22,42 @@
                 <span></span>
             </button>
             <nav>
-                <a href="../index.html"><span class="ja">ホーム</span><span class="en">Home</span></a>
-                <a href="guide.html"><span class="ja">始める</span><span class="en">Get Started</span></a>
-                <a href="reference.html" class="active"><span class="ja">リファレンス</span><span class="en">Reference</span></a>
-                <a href="examples.html"><span class="ja">例</span><span class="en">Examples</span></a>
+                <a href="../index.html" data-i18n="nav.home">ホーム</a>
+                <a href="guide.html" data-i18n="nav.guide">始める</a>
+                <a href="reference.html" class="active" data-i18n="nav.reference">リファレンス</a>
+                <a href="examples.html" data-i18n="nav.examples">例</a>
                 <a href="gui.html">GUI</a>
-                <a href="packages.html"><span class="ja">パッケージ</span><span class="en">Packages</span></a>
-                <a href="plugins.html"><span class="ja">プラグイン開発</span><span class="en">Plugin Dev</span></a>
-                <a href="faq.html">FAQ</a>
-                <a href="contributing.html"><span class="ja">貢献</span><span class="en">Contribute</span></a>
+                <a href="packages.html" data-i18n="nav.packages">パッケージ</a>
+                <a href="plugins.html" data-i18n="nav.plugins">プラグイン開発</a>
+                <a href="faq.html" data-i18n="nav.faq">FAQ</a>
+                <a href="contributing.html" data-i18n="nav.contribute">貢献</a>
                 <a href="https://github.com/ReoShiozawa/hajimu" target="_blank">GitHub</a>
-                <button id="lang-toggle" class="lang-toggle">🇺🇸 English</button>
+                <button id="lang-toggle" class="lang-toggle" data-i18n="lang.toggle">🇺🇸 English</button>
             </nav>
         </div>
     </header>
 
     <main>
         <div class="page-section">
-            <h2><span class="ja">リファレンスマニュアル</span><span class="en">Reference Manual</span></h2>
+            <h2 data-i18n="ref.title">リファレンスマニュアル</h2>
             
             <div style="display: grid; grid-template-columns: 250px 1fr; gap: 2rem; margin-top: 2rem;">
                 <div class="sidebar">
-                    <h3><span class="ja">目次</span><span class="en">Contents</span></h3>
+                    <h3 data-i18n="ref.toc">目次</h3>
                     <ul>
-                        <li><a href="#basics"><span class="ja">基本構文</span><span class="en">Syntax Basics</span></a></li>
-                        <li><a href="#types"><span class="ja">データ型</span><span class="en">Data Types</span></a></li>
-                        <li><a href="#operators"><span class="ja">演算子</span><span class="en">Operators</span></a></li>
-                        <li><a href="#control"><span class="ja">制御構造</span><span class="en">Control Flow</span></a></li>
-                        <li><a href="#functions"><span class="ja">関数</span><span class="en">Functions</span></a></li>
-                        <li><a href="#arrays"><span class="ja">配列</span><span class="en">Arrays</span></a></li>
-                        <li><a href="#strings"><span class="ja">文字列</span><span class="en">Strings</span></a></li>
-                        <li><a href="#dicts"><span class="ja">辞書</span><span class="en">Dictionaries</span></a></li>
-                        <li><a href="#classes"><span class="ja">クラス</span><span class="en">Classes</span></a></li>
-                        <li><a href="#builtins"><span class="ja">組み込み関数</span><span class="en">Built-ins</span></a></li>
-                        <li><a href="#platform"><span class="ja">プラットフォーム定数</span><span class="en">Platform Constants</span></a></li>
-                        <li><a href="#plugins"><span class="ja">C拡張プラグイン</span><span class="en">C Plugins</span></a></li>
-                        <li><a href="#packages"><span class="ja">パッケージ管理</span><span class="en">Package Mgmt</span></a></li>
+                        <li><a href="#basics" data-i18n="ref.s.basics">基本構文</a></li>
+                        <li><a href="#types" data-i18n="ref.s.types">データ型</a></li>
+                        <li><a href="#operators" data-i18n="ref.s.operators">演算子</a></li>
+                        <li><a href="#control" data-i18n="ref.s.control">制御構造</a></li>
+                        <li><a href="#functions" data-i18n="ref.s.functions">関数</a></li>
+                        <li><a href="#arrays" data-i18n="ref.s.arrays">配列</a></li>
+                        <li><a href="#strings" data-i18n="ref.s.strings">文字列</a></li>
+                        <li><a href="#dicts" data-i18n="ref.s.dicts">辞書</a></li>
+                        <li><a href="#classes" data-i18n="ref.s.classes">クラス</a></li>
+                        <li><a href="#builtins" data-i18n="ref.s.builtins">組み込み関数</a></li>
+                        <li><a href="#platform" data-i18n="ref.s.platform">プラットフォーム定数</a></li>
+                        <li><a href="#plugins" data-i18n="ref.s.plugins">C拡張プラグイン</a></li>
+                        <li><a href="#packages" data-i18n="ref.s.packages">パッケージ管理</a></li>
                     </ul>
                 </div>
 
@@ -418,37 +418,37 @@
                                 <tr><td>丸め(数値, 桁数)</td><td>四捨五入</td></tr>
                             </tbody>
                         </table>
-                        <p><a href="https://github.com/ReoShiozawa/hajimu/blob/main/docs/REFERENCE.md" target="_blank"><span class="ja">完全なリストを見る →</span><span class="en">View full list →</span></a></p>
+                        <p><a href="https://github.com/ReoShiozawa/hajimu/blob/main/docs/REFERENCE.md" target="_blank"><span class="i18n-ja">完全なリストを見る →</span><span class="i18n-en">View full list →</span></a></p>
                     </section>
 
                     <!-- プラットフォーム定数 -->
                     <section id="platform">
-                        <h3><span class="ja">プラットフォーム定数 (v1.3.1+)</span><span class="en">Platform Constants (v1.3.1+)</span></h3>
+                        <h3><span class="i18n-ja">プラットフォーム定数 (v1.3.1+)</span><span class="i18n-en">Platform Constants (v1.3.1+)</span></h3>
                         <p>
-                            <span class="ja">v1.3.1 から、実行環境を自動検出する組み込み定数が追加されました。</span>
-                            <span class="en">Since v1.3.1, built-in constants are available for detecting the runtime platform.</span>
+                            <span class="i18n-ja">v1.3.1 から、実行環境を自動検出する組み込み定数が追加されました。</span>
+                            <span class="i18n-en">Since v1.3.1, built-in constants are available for detecting the runtime platform.</span>
                         </p>
 
-                        <h4><span class="ja">定数一覧</span><span class="en">Constants</span></h4>
+                        <h4><span class="i18n-ja">定数一覧</span><span class="i18n-en">Constants</span></h4>
                         <table>
                             <thead>
                                 <tr>
-                                    <th><span class="ja">定数名</span><span class="en">Constant</span></th>
-                                    <th><span class="ja">型</span><span class="en">Type</span></th>
-                                    <th><span class="ja">内容</span><span class="en">Value</span></th>
+                                    <th><span class="i18n-ja">定数名</span><span class="i18n-en">Constant</span></th>
+                                    <th><span class="i18n-ja">型</span><span class="i18n-en">Type</span></th>
+                                    <th><span class="i18n-ja">内容</span><span class="i18n-en">Value</span></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr><td><code>システム名</code></td><td><span class="ja">文字列</span><span class="en">string</span></td><td><code>"macos"</code> / <code>"linux"</code> / <code>"windows"</code></td></tr>
-                                <tr><td><code>アーキテクチャ</code></td><td><span class="ja">文字列</span><span class="en">string</span></td><td><code>"x86_64"</code> / <code>"arm64"</code> など</td></tr>
-                                <tr><td><code>はじむバージョン</code></td><td><span class="ja">文字列</span><span class="en">string</span></td><td><code>"1.3.1"</code> など</td></tr>
-                                <tr><td><code>システム{}</code></td><td><span class="ja">辞書</span><span class="en">dict</span></td><td><span class="ja">プラットフォーム情報全体</span><span class="en">All platform info</span></td></tr>
+                                <tr><td><code>システム名</code></td><td><span class="i18n-ja">文字列</span><span class="i18n-en">string</span></td><td><code>"macos"</code> / <code>"linux"</code> / <code>"windows"</code></td></tr>
+                                <tr><td><code>アーキテクチャ</code></td><td><span class="i18n-ja">文字列</span><span class="i18n-en">string</span></td><td><code>"x86_64"</code> / <code>"arm64"</code> など</td></tr>
+                                <tr><td><code>はじむバージョン</code></td><td><span class="i18n-ja">文字列</span><span class="i18n-en">string</span></td><td><code>"1.3.1"</code> など</td></tr>
+                                <tr><td><code>システム{}</code></td><td><span class="i18n-ja">辞書</span><span class="i18n-en">dict</span></td><td><span class="i18n-ja">プラットフォーム情報全体</span><span class="i18n-en">All platform info</span></td></tr>
                             </tbody>
                         </table>
 
-                        <h4><span class="ja">使用例</span><span class="en">Examples</span></h4>
+                        <h4><span class="i18n-ja">使用例</span><span class="i18n-en">Examples</span></h4>
                         <div class="code-example">
-<pre><span class="ja">// プラットフォーム別の分岐</span><span class="en">// Branch by platform</span>
+<pre><span class="i18n-ja">// プラットフォーム別の分岐</span><span class="i18n-en">// Branch by platform</span>
 もし システム名 == "macos" なら
     表示("macOS で実行中")
 それ以外 もし システム名 == "linux" なら
@@ -457,20 +457,20 @@
     表示("Windows で実行中")
 終わり
 
-<span class="ja">// 詳細情報</span><span class="en">// Detailed info</span>
-表示(はじむバージョン)  <span class="ja">// → 1.3.1</span><span class="en">// → 1.3.1</span>
-表示(アーキテクチャ)    <span class="ja">// → arm64</span><span class="en">// → arm64</span>
+<span class="i18n-ja">// 詳細情報</span><span class="i18n-en">// Detailed info</span>
+表示(はじむバージョン)  <span class="i18n-ja">// → 1.3.1</span><span class="i18n-en">// → 1.3.1</span>
+表示(アーキテクチャ)    <span class="i18n-ja">// → arm64</span><span class="i18n-en">// → arm64</span>
 
-<span class="ja">// プラットフォーム情報辞書</span><span class="en">// Platform info dict</span>
+<span class="i18n-ja">// プラットフォーム情報辞書</span><span class="i18n-en">// Platform info dict</span>
 変数 情報 = システム{}
-表示(情報["os"])     <span class="ja">// → macos</span><span class="en">// → macos</span>
-表示(情報["arch"])   <span class="ja">// → arm64</span><span class="en">// → arm64</span></pre>
+表示(情報["os"])     <span class="i18n-ja">// → macos</span><span class="i18n-en">// → macos</span>
+表示(情報["arch"])   <span class="i18n-ja">// → arm64</span><span class="i18n-en">// → arm64</span></pre>
                         </div>
 
-                        <h4><span class="ja">プラットフォーム別 .hjp 自動選択</span><span class="en">Automatic .hjp Selection by Platform</span></h4>
+                        <h4><span class="i18n-ja">プラットフォーム別 .hjp 自動選択</span><span class="i18n-en">Automatic .hjp Selection by Platform</span></h4>
                         <p>
-                            <span class="ja">パッケージに <code>hajimu.json</code> でプラットフォーム別ファイルを指定すると、実行時に自動選択されます。</span>
-                            <span class="en">Specify platform-specific files in <code>hajimu.json</code> and the correct binary is selected automatically at runtime.</span>
+                            <span class="i18n-ja">パッケージに <code>hajimu.json</code> でプラットフォーム別ファイルを指定すると、実行時に自動選択されます。</span>
+                            <span class="i18n-en">Specify platform-specific files in <code>hajimu.json</code> and the correct binary is selected automatically at runtime.</span>
                         </p>
                         <div class="code-example">
 <pre>{
@@ -487,8 +487,8 @@
 
                     <!-- C拡張プラグイン -->
                     <section id="plugins">
-                        <h3><span class="ja">C拡張プラグイン（.hjp）</span><span class="en">C Extension Plugins (.hjp)</span></h3>
-                        <p><span class="ja">C言語等で書かれたネイティブプラグインを統一拡張子 <code>.hjp</code>（Hajimu Plugin）で読み込めます。Windows/macOS/Linux 共通で使用可能です。</span><span class="en">Load native plugins written in C etc. via the unified <code>.hjp</code> (Hajimu Plugin) extension. Works across Windows/macOS/Linux.</span></p>
+                        <h3><span class="i18n-ja">C拡張プラグイン（.hjp）</span><span class="i18n-en">C Extension Plugins (.hjp)</span></h3>
+                        <p><span class="i18n-ja">C言語等で書かれたネイティブプラグインを統一拡張子 <code>.hjp</code>（Hajimu Plugin）で読み込めます。Windows/macOS/Linux 共通で使用可能です。</span><span class="i18n-en">Load native plugins written in C etc. via the unified <code>.hjp</code> (Hajimu Plugin) extension. Works across Windows/macOS/Linux.</span></p>
 
                         <h4>プラグインの使用</h4>
                         <div class="code-example">
@@ -528,8 +528,8 @@
 
                     <!-- パッケージ管理 -->
                     <section id="packages">
-                        <h3><span class="ja">パッケージ管理</span><span class="en">Package Management</span></h3>
-                        <p><span class="ja">内蔵パッケージマネージャで外部パッケージを管理できます。</span><span class="en">Manage external packages with the built-in package manager.</span></p>
+                        <h3><span class="i18n-ja">パッケージ管理</span><span class="i18n-en">Package Management</span></h3>
+                        <p><span class="i18n-ja">内蔵パッケージマネージャで外部パッケージを管理できます。</span><span class="i18n-en">Manage external packages with the built-in package manager.</span></p>
 
                         <h4>コマンド一覧</h4>
                         <table>

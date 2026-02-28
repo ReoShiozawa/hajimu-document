@@ -633,10 +633,21 @@ footer {
     background: rgba(255,255,255,0.3);
 }
 
-/* 言語クラス切替 */
-.en { display: none; }
-body.lang-en .en { display: inline; }
-body.lang-en .ja { display: none; }
+/* ─── 言語クラス切替 ───
+   短いテキスト: data-i18n属性で JS が差し替える
+   長いコンテンツ: .i18n-ja / .i18n-en ブロックを片方非表示
+*/
+.i18n-en { display: none; }
+body.lang-en .i18n-en { display: block; }
+body.lang-en .i18n-ja { display: none; }
+
+/* 内インライン用（実跳など短いスパン） */
+.i18n-en-inline { display: none; }
+body.lang-en .i18n-en-inline { display: inline; }
+body.lang-en .i18n-ja-inline { display: none; }
+
+/* CSSフォールバック（JS無効時） */
+noscript .i18n-en { display: none !important; }
 
 /* nav active */
 nav a.active {
