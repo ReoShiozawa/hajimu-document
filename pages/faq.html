@@ -49,7 +49,7 @@
                 <h3>Q: この言語の特徴は何ですか？</h3>
                 <p><strong>A:</strong></p>
                 <ul>
-                    <li>完全日本語の予約語とキーワード</li>
+                    <li>日本語中心の予約語とキーワード</li>
                     <li>シンプルで直感的な構文</li>
                     <li>143個の豊富な組み込み関数</li>
                     <li>オブジェクト指向プログラミング対応</li>
@@ -57,6 +57,8 @@
                     <li>非同期処理（async/await）対応</li>
                     <li>HTTP通信ライブラリ内蔵</li>
                     <li>C言語で実装された高速なインタープリタ</li>
+                    <li><code>function</code>、<code>if</code>、<code>for</code> などの英語 alias</li>
+                    <li><code>.jp</code> / <code>.haj</code> / <code>.hajimu</code> ソース拡張子</li>
                 </ul>
             </div>
 
@@ -71,7 +73,7 @@
             
             <div class="faq-item">
                 <h3>Q: どのOSで動作しますか？</h3>
-                <p><strong>A:</strong> macOS、Linux、Windows（WSL/MSYS2経由）で動作します。C言語で実装されているため、GCCやClangがあればほとんどのUnix系環境で動作します。</p>
+                <p><strong>A:</strong> macOS、Linux、Windows で動作します。Windows では GitHub Releases のインストーラー、またはポータブル版の <code>hajimu-windows-x64.exe</code> を利用できます。ソースからビルドする場合は GCC / Clang / MinGW-w64 などを使います。</p>
             </div>
 
             <div class="faq-item">
@@ -108,6 +110,18 @@ sudo make install</pre>
 
         <section>
             <h2>言語仕様</h2>
+            <div class="faq-item">
+                <h3>Q: 英語でも書けますか？</h3>
+                <p><strong>A:</strong> はい。v1.4.0 以降では <code>function</code>、<code>var</code>、<code>if</code>、<code>for</code>、<code>return</code>、<code>class</code>、<code>new</code>、<code>print</code> などの英語 alias を使えます。日本語構文と英語 alias は同じ AST / 同じ実行系につながるため、同じファイル内で混在させることもできます。</p>
+                <div class="code-example">
+<pre>function add(a, b):
+    return a + b
+end
+
+print(add(3, 5))</pre>
+                </div>
+            </div>
+
             
             <div class="faq-item">
                 <h3>Q: 変数の型は静的ですか、動的ですか？</h3>
@@ -182,7 +196,7 @@ x = [1, 2, 3]   // 配列に変更可能</pre>
             
             <div class="faq-item">
                 <h3>Q: IDEやエディタのサポートはありますか？</h3>
-                <p><strong>A:</strong> 現在、専用のIDEプラグインは開発中ですが、シンタックスハイライトは任意のテキストエディタで設定できます。VS Code、Vim、Emacsなどで<code>.jp</code>ファイルの認識設定が可能です。</p>
+                <p><strong>A:</strong> VS Code 拡張機能が利用できます。<code>.jp</code> に加えて <code>.haj</code> / <code>.hajimu</code> も認識し、シンタックスハイライト、補完、ホバー、診断、ローマ字入力展開、英語 alias 補助に対応しています。</p>
             </div>
 
             <div class="faq-item">
@@ -327,7 +341,7 @@ hajimu パッケージ インストール</pre>
 
             <div class="faq-item">
                 <h3>Q: この言語は実験的なものですか、それとも長期的にサポートされますか？</h3>
-                <p><strong>A:</strong> 真剣な長期プロジェクトです。現在156個のテストケースがあり、すべてパスしています。実用的なプログラムを書くための機能は既に揃っており、継続的に改善・拡張していきます。</p>
+                <p><strong>A:</strong> 真剣な長期プロジェクトです。現在170個以上のテストケースがあり、すべてパスしています。実用的なプログラムを書くための機能は既に揃っており、継続的に改善・拡張していきます。</p>
             </div>
 
             <div class="faq-item">

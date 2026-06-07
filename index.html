@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>はじむ / Hajimu - 日本語で書こう、自由に創ろう</title>
-    <meta name="description" content="日本語で自然にプログラミングができるオープンソース言語「はじむ」。シンプルで強力な言語処理系。">
+    <title>はじむ / Hajimu - 日本語で書き、英語にもつながるプログラミング言語</title>
+    <meta name="description" content="日本語を第一構文として扱い、英語 alias にも対応したオープンソース言語「はじむ」。C 実装の言語処理系、VS Code 拡張、パッケージ管理、HJPB バイトコードを提供。">
     <meta name="keywords" content="はじむ, 日本語, プログラミング言語, インタープリタ, オープンソース">
     <link rel="stylesheet" href="assets/css/style.css">
     <noscript>
@@ -44,10 +44,10 @@
             <!-- ヒーローセクション -->
             <section class="hero">
                 <h1>
-                    <span class="i18n-ja">はじむ<br>日本語で書くプログラミング言語</span>
-                    <span class="i18n-en">Hajimu<br>A Programming Language Written in Japanese</span>
+                    <span class="i18n-ja">はじむ<br>日本語で書き、英語にもつながる言語</span>
+                    <span class="i18n-en">Hajimu<br>Japanese-first, English-bridge programming</span>
                 </h1>
-                <p data-i18n="index.hero.sub">シンプルで直感的。日本語の自然な表現でコードを書こう。</p>
+                <p data-i18n="index.hero.sub">日本語を第一構文に、function / if / for などの英語 alias でも書けるオープンソース言語。</p>
                 <div class="cta-buttons">
                     <a href="pages/guide.html" class="btn btn-primary" data-i18n="index.cta.start">今すぐ始める</a>
                     <a href="pages/reference.html" class="btn btn-secondary" data-i18n="index.cta.docs">ドキュメントを読む</a>
@@ -61,7 +61,7 @@
                     <div class="feature-card">
                         <div class="feature-icon">📝</div>
                         <h3>日本語シンタックス</h3>
-                        <p>日本語の自然な表現で、直感的にコードが書けます。</p>
+                        <p>日本語の自然な表現で、直感的にコードが書けます。<code>.jp</code> / <code>.haj</code> / <code>.hajimu</code> に対応しています。</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">⚡</div>
@@ -99,9 +99,9 @@
                         <p>1,074の日本語関数でデスクトップGUIを作成。外部ライブラリ不要で、ウィジェット・描画・チャートまで対応。</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">🎓</div>
-                        <h3>初心者向け</h3>
-                        <p>シンプルな構文で、プログラミング初心者でも学習しやすい設計。</p>
+                        <div class="feature-icon">🌐</div>
+                        <h3>英語 alias 対応</h3>
+                        <p>function、var、if、for、return、class などでも書け、日本語で学んだ概念を英語圏の用語へ橋渡しできます。</p>
                     </div>
                 </div>
             </section>
@@ -121,13 +121,19 @@
 表示(x + y)  // → 30</pre>
                 </div>
 
-                <h3>関数定義</h3>
+                <h3>関数定義（日本語 / 英語 alias）</h3>
                 <div class="code-example">
 <pre>関数 足す(a, b):
     戻す a + b
 終わり
 
-表示(足す(3, 5))  // → 8</pre>
+表示(足す(3, 5))  // → 8
+
+function add(a, b):
+    return a + b
+end
+
+print(add(3, 5))  // → 8</pre>
                 </div>
 
                 <h3>ループと条件分岐</h3>
@@ -239,18 +245,18 @@
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">✅</div>
-                        <h3>156個</h3>
-                        <p data-i18n="index.stat.tests">テストケース</p>
+                        <h3>170+</h3>
+                        <p data-i18n="index.stat.tests">自動テスト</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">📄</div>
-                        <h3>100%</h3>
-                        <p data-i18n="index.stat.docs">ドキュメント完成</p>
+                        <h3>v1.4.0</h3>
+                        <p data-i18n="index.stat.docs">最新リリース</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">⚠️</div>
-                        <h3>0個</h3>
-                        <p data-i18n="index.stat.warnings">コンパイラ警告</p>
+                        <h3>3</h3>
+                        <p data-i18n="index.stat.warnings">ソース拡張子</p>
                     </div>
                 </div>
             </section>

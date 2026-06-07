@@ -85,6 +85,24 @@
 <pre>表示("hello")
 表示("年齢:", 25)</pre>
                         </div>
+
+                        <h4>ソース拡張子</h4>
+                        <p><code>.jp</code>、<code>.haj</code>、<code>.hajimu</code> をはじむソースとして利用できます。<code>.haj</code> / <code>.hajimu</code> は英語 alias を含む教材や海外向けコードにも向いています。</p>
+
+                        <h4>英語 alias</h4>
+                        <p>v1.4.0 以降、主要な構文は英語 alias でも書けます。日本語構文と英語 alias は同じ実行系につながります。</p>
+                        <div class="code-example">
+<pre>function add(a, b):
+    return a + b
+end
+
+var total = 0
+for value in [1, 2, 3]:
+    total += value
+end
+
+print(add(total, 4))</pre>
+                        </div>
                     </section>
 
                     <!-- データ型 -->
@@ -441,7 +459,7 @@
                             <tbody>
                                 <tr><td><code>システム名</code></td><td><span class="i18n-ja">文字列</span><span class="i18n-en">string</span></td><td><code>"macos"</code> / <code>"linux"</code> / <code>"windows"</code></td></tr>
                                 <tr><td><code>アーキテクチャ</code></td><td><span class="i18n-ja">文字列</span><span class="i18n-en">string</span></td><td><code>"x86_64"</code> / <code>"arm64"</code> など</td></tr>
-                                <tr><td><code>はじむバージョン</code></td><td><span class="i18n-ja">文字列</span><span class="i18n-en">string</span></td><td><code>"1.3.1"</code> など</td></tr>
+                                <tr><td><code>はじむバージョン</code></td><td><span class="i18n-ja">文字列</span><span class="i18n-en">string</span></td><td><code>"1.4.0"</code> など</td></tr>
                                 <tr><td><code>システム{}</code></td><td><span class="i18n-ja">辞書</span><span class="i18n-en">dict</span></td><td><span class="i18n-ja">プラットフォーム情報全体</span><span class="i18n-en">All platform info</span></td></tr>
                             </tbody>
                         </table>
@@ -458,7 +476,7 @@
 終わり
 
 <span class="i18n-ja">// 詳細情報</span><span class="i18n-en">// Detailed info</span>
-表示(はじむバージョン)  <span class="i18n-ja">// → 1.3.1</span><span class="i18n-en">// → 1.3.1</span>
+表示(はじむバージョン)  <span class="i18n-ja">// → 1.4.0</span><span class="i18n-en">// → 1.4.0</span>
 表示(アーキテクチャ)    <span class="i18n-ja">// → arm64</span><span class="i18n-en">// → arm64</span>
 
 <span class="i18n-ja">// プラットフォーム情報辞書</span><span class="i18n-en">// Platform info dict</span>
