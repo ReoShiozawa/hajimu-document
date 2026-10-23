@@ -34,7 +34,7 @@ body.page-loading {
 
 /* ヘッダー */
 header {
-    background: linear-gradient(135deg, var(--primary-color), var(--dark-bg));
+    background: linear-gradient(135deg, #2c3e50, #34495e);
     color: white;
     padding: 1rem 0;
     position: sticky;
@@ -114,7 +114,7 @@ main {
 
 /* ヒーローセクション */
 .hero {
-    background: linear-gradient(135deg, var(--primary-color), var(--dark-bg));
+    background: linear-gradient(135deg, #2c3e50, #34495e);
     color: white;
     padding: 6rem 2rem;
     text-align: center;

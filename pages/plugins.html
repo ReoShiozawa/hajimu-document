@@ -92,6 +92,8 @@
                         <div class="code-example">
 <pre>#include "hajimu_plugin.h"
 
+HAJIMU_PLUGIN_ABI_EXPORT()
+
 // プラグイン関数: 挨拶を表示
 static Value fn_hello(int argc, Value *argv) {
     (void)argc;
@@ -116,7 +118,7 @@ HAJIMU_PLUGIN_EXPORT HajimuPluginInfo *hajimu_plugin_init(void) {
         .functions   = functions,
         .function_count = sizeof(functions) / sizeof(functions[0]),
     };
-    return &info;
+    return &amp;info;
 }
 </pre>
                         </div>
@@ -174,9 +176,11 @@ HP["挨拶"]("太郎")
                         </div>
 
                         <h4>初期化関数（必須）</h4>
-                        <p>すべてのプラグインは <code>hajimu_plugin_init</code> 関数をエクスポートする必要があります。</p>
+                        <p>すべてのプラグインは <code>hajimu_plugin_init</code> 関数をエクスポートする必要があります。ABI記述子も必須です。エントリポイントのあるソースファイルで <code>HAJIMU_PLUGIN_ABI_EXPORT()</code> を一度展開してください。型やサイズが一致しないプラグインは初期化前に拒否されます。</p>
                         <div class="code-example">
-<pre>HAJIMU_PLUGIN_EXPORT HajimuPluginInfo *hajimu_plugin_init(void) {
+<pre>HAJIMU_PLUGIN_ABI_EXPORT()
+
+HAJIMU_PLUGIN_EXPORT HajimuPluginInfo *hajimu_plugin_init(void) {
     static HajimuPluginInfo info = {
         .name        = "プラグイン名",
         .version     = "1.0.0",
@@ -185,7 +189,7 @@ HP["挨拶"]("太郎")
         .functions   = functions,      // HajimuPluginFunc 配列
         .function_count = 関数の数,
     };
-    return &info;
+    return &amp;info;
 }</pre>
                         </div>
 
@@ -462,6 +466,8 @@ static HajimuPluginFunc functions[] = {
 };
 
 extern "C" {
+    HAJIMU_PLUGIN_ABI_EXPORT()
+
     HAJIMU_PLUGIN_EXPORT HajimuPluginInfo *hajimu_plugin_init(void) {
         static HajimuPluginInfo info = {
             .name        = "trig_plugin",
@@ -471,7 +477,7 @@ extern "C" {
             .functions   = functions,
             .function_count = 1,
         };
-        return &info;
+        return &amp;info;
     }
 }</pre>
                         </div>
